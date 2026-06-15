@@ -63,7 +63,7 @@
             --border-med: rgba(255, 255, 255, 0.10);
             --green-light: #0d2e1f;
             --topbar-bg: #141412;
-            --shadow: 0 8px 24px rgba(0, 0, 0, .35);
+            --shadow: 0 2px 8px rgba(0, 0, 0, .18), 0 1px 2px rgba(0, 0, 0, .12);
             --scrim: rgba(0, 0, 0, .30);
         }
 
@@ -80,7 +80,7 @@
             --border-med: rgba(0, 0, 0, 0.09);
             --green-light: #e8f5ee;
             --topbar-bg: #ffffff;
-            --shadow: 0 8px 24px rgba(30, 30, 20, .07);
+            --shadow: 0 1px 4px rgba(30, 30, 20, .07), 0 0 0 0.5px rgba(0, 0, 0, 0.04);
             --scrim: rgba(0, 0, 0, .20);
         }
 
@@ -89,15 +89,15 @@
             --bg-side: #ede8dd;
             --bg-card: #faf6ef;
             --bg-card2: #f5f0e8;
-            --text: #2c2416;
-            --text-muted: #6b5e4a;
-            --text-hint: #a0917c;
-            --text-inactive: #c2b6a2;
+            --text: #1e1608;
+            --text-muted: #4a3f2e;
+            --text-hint: #6b5c44;
+            --text-inactive: #9a8c7a;
             --border: rgba(100, 80, 40, 0.07);
             --border-med: rgba(100, 80, 40, 0.13);
             --green-light: #dff0e8;
             --topbar-bg: #ede8dd;
-            --shadow: 0 8px 24px rgba(60, 40, 10, .08);
+            --shadow: 0 1px 4px rgba(60, 40, 10, .08), 0 0 0 0.5px rgba(100, 80, 40, 0.06);
             --scrim: rgba(35, 22, 5, .22);
         }
 
@@ -549,21 +549,22 @@
 
         .hero-name {
             font-family: var(--ff-display);
-            font-size: var(--fs-3xl);
+            font-size: var(--fs-2xl);
             font-weight: 600;
             line-height: 1;
             letter-spacing: -.01em;
+            opacity: .88;
         }
 
         @media (max-width: 680px) {
             .hero-name {
-                font-size: 48px;
+                font-size: 36px;
             }
         }
 
         @media (max-width: 380px) {
             .hero-name {
-                font-size: 40px;
+                font-size: 30px;
             }
         }
 
@@ -572,9 +573,11 @@
             align-items: baseline;
             gap: 10px;
             flex-wrap: wrap;
-            font-size: var(--fs-base);
-            opacity: .85;
+            font-size: var(--fs-xl);
+            font-weight: 600;
+            opacity: 1;
             font-variant-numeric: tabular-nums;
+            letter-spacing: -0.01em;
         }
 
         .hero-sep {
@@ -856,7 +859,7 @@
         .spiritual-divider {
             height: 0.5px;
             background: var(--border);
-            margin: 18px 0;
+            margin: 40px 0;
         }
 
         .hadith-text {
@@ -866,32 +869,32 @@
             font-style: italic;
             border-left: 2.5px solid var(--border-med);
             padding-left: 12px;
-            margin-bottom: 10px;
+            margin-bottom: 20px;
         }
 
         .content-source {
             font-size: var(--fs-xs);
             color: var(--text-hint);
-            margin-bottom: 10px;
+            margin-bottom: 14px;
         }
 
         .ayah-arabic {
             font-family: var(--ff-arabic);
             font-size: 24px;
-            line-height: 2;
+            line-height: 2.2;
             text-align: right;
             direction: rtl;
             color: var(--text);
             border-bottom: 0.5px solid var(--border);
-            padding-bottom: 12px;
-            margin-bottom: 10px;
+            padding-bottom: 20px;
+            margin-bottom: 20px;
         }
 
         .ayah-translation {
             font-size: var(--fs-base);
             line-height: 1.7;
             color: var(--text-muted);
-            margin-bottom: 8px;
+            margin-bottom: 12px;
         }
 
         .share-btn {
@@ -1082,7 +1085,7 @@
                 <div class="ds-loc">
                     <span aria-hidden="true">📍</span>
                     <span id="loc-city">Загрузка...</span>
-                    <span class="loc-badge" id="loc-method">IP</span>
+                    <span class="loc-badge" id="loc-method"></span>
                 </div>
                 <div class="ds-dates">
                     <span id="loc-date"></span>
@@ -1126,11 +1129,12 @@
 
             <!-- Widgets -->
             <div class="widgets-row">
-                <div class="widget-card" id="qibla-widget">
-                    <span class="widget-icon" id="qibla-icon">🧭</span>
+                <div class="widget-card" id="qibla-widget" style="cursor:default;">
                     <span class="widget-label">Кибла</span>
-                    <span class="widget-value" id="qibla-value">—</span>
-                    <span class="widget-sub" id="qibla-sub"></span>
+                    <canvas id="qibla-canvas" width="120" height="120" style="display:block;margin:8px auto 4px;"
+                        aria-label="Компас направления киблы"></canvas>
+                    <span class="widget-value" id="qibla-value" style="display:block;text-align:center;">—</span>
+                    <span class="widget-sub" id="qibla-sub" style="display:block;text-align:center;"></span>
                 </div>
                 <div class="widget-card">
                     <span class="widget-icon" id="weather-icon">🌡️</span>
@@ -1249,7 +1253,7 @@
         ];
         const AYAHS = [
             { ar: 'وَاسْتَعِينُوا بِالصَّبْرِ وَالصَّلَاةِ', tr: '«Прибегайте к помощи терпения и молитвы. Воистину, Аллах — с терпеливыми.»', ref: 'Аль-Бакара (2:153)' },
-            { ar: 'إِنَّ مَعَ الْعُسْرِ يُسْرًا', tr: '«Воистину, вместе с трудностью — облегчение.»', ref: 'Аш-Шарх (94:6)' },
+            { ar: 'إِنَّ مَعَ الْعُسْرِ يُسْرًا', tr: '«Воистину, за каждой тягостью наступает облегчение.»', ref: 'Аш-Шарх (94:6)' },
             { ar: 'وَعَسَىٰ أَن تَكْرَهُوا شَيْئًا وَهُوَ خَيْرٌ لَّكُمْ', tr: '«Быть может, вам не нравится то, что является благом для вас.»', ref: 'Аль-Бакара (2:216)' },
             { ar: 'إِنَّ اللَّهَ مَعَ الصَّابِرِينَ', tr: '«Воистину, Аллах — с терпеливыми.»', ref: 'Аль-Бакара (2:153)' },
             { ar: 'وَمَن يَتَّقِ اللَّهَ يَجْعَل لَّهُ مَخْرَجًا', tr: '«Тому, кто боится Аллаха, Он укажет выход.»', ref: 'Ат-Талак (65:2)' },
@@ -1297,6 +1301,8 @@
             document.querySelectorAll('.th-btn').forEach((b, i) => {
                 b.classList.toggle('active', ['dark', 'light', 'beige'][i] === t);
             });
+            const q = parseFloat(document.getElementById('qibla-value').textContent);
+            if (!isNaN(q)) drawQiblaCompass(q);
         }
         (function () {
             const saved = localStorage.getItem('theme') || 'dark';
@@ -1385,8 +1391,88 @@
             return (theta + 360) % 360;
         }
         function compassPoint(deg) {
-            const points = ['С', 'СВ', 'В', 'ЮВ', 'Ю', 'ЮЗ', 'З', 'СЗ'];
-            return points[Math.round(deg / 45) % 8];
+            const pts = ['С', 'СВ', 'В', 'ЮВ', 'Ю', 'ЮЗ', 'З', 'СЗ'];
+            return pts[Math.round(deg / 45) % 8];
+        }
+        function drawQiblaCompass(deg) {
+            const canvas = document.getElementById('qibla-canvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const W = 120, H = 120, cx = 60, cy = 60, R = 54;
+
+            const theme = document.body.getAttribute('data-theme');
+            const isDark = theme !== 'light';
+            const colBg = theme === 'dark' ? '#1c1c19' : theme === 'beige' ? '#faf6ef' : '#f5f5f2';
+            const colRing = isDark ? 'rgba(255,255,255,0.10)' : 'rgba(0,0,0,0.09)';
+            const colTick = isDark ? 'rgba(255,255,255,0.18)' : 'rgba(0,0,0,0.15)';
+            const colLabel = isDark ? '#a0a09a' : '#5e5e5a';
+            const colNeedle = '#2d6a4f';
+            const colNeedleTail = isDark ? 'rgba(255,255,255,0.18)' : 'rgba(0,0,0,0.15)';
+            const colDot = isDark ? '#e8e6df' : '#1a1a18';
+
+            ctx.clearRect(0, 0, W, H);
+
+            ctx.beginPath();
+            ctx.arc(cx, cy, R, 0, Math.PI * 2);
+            ctx.fillStyle = colBg;
+            ctx.fill();
+            ctx.strokeStyle = colRing;
+            ctx.lineWidth = 1.5;
+            ctx.stroke();
+
+            const cardinals = [['С', 0], ['В', 90], ['Ю', 180], ['З', 270]];
+            cardinals.forEach(([label, angle]) => {
+                const rad = (angle - 90) * Math.PI / 180;
+                const x1 = cx + (R - 2) * Math.cos(rad);
+                const y1 = cy + (R - 2) * Math.sin(rad);
+                const x2 = cx + (R - 10) * Math.cos(rad);
+                const y2 = cy + (R - 10) * Math.sin(rad);
+                ctx.beginPath();
+                ctx.moveTo(x1, y1);
+                ctx.lineTo(x2, y2);
+                ctx.strokeStyle = colTick;
+                ctx.lineWidth = 1.5;
+                ctx.stroke();
+                const lx = cx + (R - 20) * Math.cos(rad);
+                const ly = cy + (R - 20) * Math.sin(rad);
+                ctx.fillStyle = colLabel;
+                ctx.font = '500 10px Inter, system-ui, sans-serif';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText(label, lx, ly);
+            });
+
+            const rad = (deg - 90) * Math.PI / 180;
+            const tipX = cx + (R - 14) * Math.cos(rad);
+            const tipY = cy + (R - 14) * Math.sin(rad);
+            const tailX = cx - 22 * Math.cos(rad);
+            const tailY = cy - 22 * Math.sin(rad);
+
+            ctx.beginPath();
+            ctx.moveTo(tailX, tailY);
+            ctx.lineTo(tipX, tipY);
+            ctx.strokeStyle = colNeedleTail;
+            ctx.lineWidth = 2;
+            ctx.stroke();
+
+            ctx.beginPath();
+            ctx.moveTo(cx, cy);
+            ctx.lineTo(tipX, tipY);
+            ctx.strokeStyle = colNeedle;
+            ctx.lineWidth = 3;
+            ctx.lineCap = 'round';
+            ctx.stroke();
+
+            ctx.fillStyle = colNeedle;
+            ctx.font = '13px serif';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('🕋', tipX, tipY);
+
+            ctx.beginPath();
+            ctx.arc(cx, cy, 4, 0, Math.PI * 2);
+            ctx.fillStyle = colDot;
+            ctx.fill();
         }
 
         /* ══ HIJRI HELPERS ══ */
@@ -1450,11 +1536,12 @@
         }
         async function updateWeather(lat, lon) {
             const w = await fetchWeather(lat, lon);
+            const weatherCard = document.querySelector('#weather-value').closest('.widget-card');
             if (!w) {
-                document.getElementById('weather-value').textContent = '—';
-                document.getElementById('weather-sub').textContent = 'нет данных';
+                weatherCard.style.display = 'none';
                 return;
             }
+            weatherCard.style.display = '';
             const [icon, label] = weatherInfo(w.weathercode);
             document.getElementById('weather-icon').textContent = icon;
             document.getElementById('weather-value').textContent = `${Math.round(w.temperature)}°C`;
@@ -1467,7 +1554,7 @@
                 const q = qiblaDirection(S.lat, S.lon);
                 document.getElementById('qibla-value').textContent = `${Math.round(q)}°`;
                 document.getElementById('qibla-sub').textContent = compassPoint(q);
-                document.getElementById('qibla-icon').style.transform = `rotate(${q}deg)`;
+                drawQiblaCompass(q);
             }
 
             const dj = daysUntilFriday();
@@ -1724,7 +1811,7 @@
 
         /* ══ SERVICE WORKER ══ */
         if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('./sw.js').catch(() => {});
+            navigator.serviceWorker.register('./sw.js').catch(() => { });
         }
 
         /* ══ INIT ══ */
@@ -1775,4 +1862,5 @@
         })();
     </script>
 </body>
+
 </html>
