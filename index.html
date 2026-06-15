@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="ru">
 
 <head>
@@ -6,8 +7,20 @@
     <title>Время намаза — расписание молитв онлайн</title>
     <meta name="description"
         content="Точное время намаза для вашего города. Фаджр, Зухр, Аср, Магриб, Иша. Хадис и аят дня." />
-    <meta name="theme-color" content="#2d6a4f" />
+    <meta name="theme-color" id="meta-theme-color" content="#141412" />
     <link rel="manifest" href="manifest.json" />
+    <link rel="icon" href="icon-192.png" type="image/png" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Намаз" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Время намаза — расписание молитв онлайн" />
+    <meta property="og:description"
+        content="Точное время намаза для вашего города. Фаджр, Зухр, Аср, Магриб, Иша. Хадис и аят дня." />
+    <meta property="og:image" content="icon-512.png" />
+    <meta property="og:locale" content="ru_RU" />
+    <meta name="twitter:card" content="summary_large_image" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -129,6 +142,16 @@
         :focus-visible {
             outline: 2px solid var(--green);
             outline-offset: 2px;
+        }
+
+        .visually-hidden {
+            position: absolute !important;
+            width: 1px; height: 1px;
+            padding: 0; margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
         }
 
         /* ── TOPBAR ── */
@@ -289,6 +312,12 @@
             .col-right {
                 position: static;
             }
+
+            /* On mobile the center column (prayer times) is the priority,
+               so settings move below it. */
+            .col-center { order: 1; }
+            .col-right  { order: 2; }
+            .col-left   { order: 3; }
         }
 
         @media (max-width: 640px) {
@@ -452,6 +481,133 @@
             color: var(--text-hint);
         }
 
+        /* ── MOBILE CITY CHIP ── */
+        .city-chip {
+            display: none; /* hidden on desktop */
+            font-size: var(--fs-xs);
+            font-family: inherit;
+            padding: 4px 12px;
+            border: 0.5px solid var(--green);
+            border-radius: 20px;
+            background: transparent;
+            color: var(--green);
+            cursor: pointer;
+            white-space: nowrap;
+            font-weight: 500;
+            transition: background var(--ease), color var(--ease);
+        }
+
+        .city-chip:hover {
+            background: var(--green);
+            color: var(--bg);
+        }
+
+        @media (max-width: 1000px) {
+            .city-chip {
+                display: inline-flex;
+            }
+        }
+
+        /* ── MOBILE CITY PICKER MODAL ── */
+        .city-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 100;
+            padding: 0 16px;
+            align-items: flex-start;
+            justify-content: center;
+        }
+
+        .city-modal.open {
+            display: flex;
+        }
+
+        .city-modal-backdrop {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.55);
+            animation: fadeIn 0.2s ease;
+        }
+
+        .city-modal-panel {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            margin-top: 20vh;
+            background: var(--bg-card);
+            border: 0.5px solid var(--border-med);
+            border-radius: var(--r-xl);
+            box-shadow: 0 24px 48px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            animation: slideUp 0.25s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(24px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .city-modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 18px 0;
+            font-weight: 600;
+            font-size: var(--fs-sm);
+            color: var(--text);
+        }
+
+        .city-modal-close {
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-family: inherit;
+            cursor: pointer;
+            background: transparent;
+            border: none;
+            border-radius: 50%;
+            color: var(--text-muted);
+            transition: background var(--ease), color var(--ease);
+        }
+
+        .city-modal-close:hover {
+            background: var(--bg-card2);
+            color: var(--text);
+        }
+
+        .city-modal-input {
+            width: calc(100% - 36px);
+            margin: 12px 18px;
+            padding: 10px 12px;
+            font-size: var(--fs-sm);
+            font-family: inherit;
+            border: 0.5px solid var(--border-med);
+            border-radius: var(--r-sm);
+            background: var(--bg);
+            color: var(--text);
+            outline: none;
+            transition: border-color var(--ease);
+        }
+
+        .city-modal-input:focus {
+            border-color: var(--green);
+        }
+
+        .city-modal-ac {
+            margin: 0 18px 18px;
+            max-height: 50vh;
+            overflow-y: auto;
+        }
+
         /* Push banner */
         .push-banner {
             background: var(--bg-card);
@@ -504,6 +660,36 @@
             font-size: 18px;
             padding: 0;
             line-height: 1;
+        }
+
+        /* ── QIBLA AR BUTTON ── */
+        .qibla-ar-btn {
+            display: none; /* desktop: hidden by default, shown only on touch devices */
+            width: 100%;
+            margin-top: 6px;
+            padding: 6px 0;
+            font-size: var(--fs-xs);
+            font-family: inherit;
+            border: 0.5px solid var(--green);
+            border-radius: var(--r-sm);
+            background: transparent;
+            color: var(--green);
+            cursor: pointer;
+            font-weight: 500;
+            transition: background var(--ease), color var(--ease);
+        }
+
+        .qibla-ar-btn:hover,
+        .qibla-ar-btn.active {
+            background: var(--green);
+            color: var(--bg);
+        }
+
+        /* Show on touch-capable devices and small screens */
+        @media (hover: none), (max-width: 1000px) {
+            .qibla-ar-btn {
+                display: block;
+            }
         }
 
         /* Hero row: big "next prayer" card + countdown ring */
@@ -759,14 +945,8 @@
         /* ── WIDGETS ROW ── */
         .widgets-row {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
             gap: 16px;
-        }
-
-        @media (max-width: 900px) {
-            .widgets-row {
-                grid-template-columns: repeat(2, 1fr);
-            }
         }
 
         .widget-card {
@@ -1064,12 +1244,13 @@
                 <option value="4">Умм аль-Кура</option>
                 <option value="5">Египетское управление</option>
                 <option value="14">ДУМР (Россия)</option>
-                <option value="99">Европейский совет</option>
+                <option value="15">Европейский совет (MWL)</option>
             </select>
         </aside>
 
         <!-- CENTER -->
         <main class="col-center">
+            <h1 class="visually-hidden">Время намаза — расписание молитв на сегодня</h1>
 
             <!-- Push banner -->
             <div class="push-banner" id="push-banner" role="alert">
@@ -1091,6 +1272,22 @@
                     <span id="loc-date"></span>
                     <span class="ds-sep">·</span>
                     <span id="hijri-date">—</span>
+                    <!-- Mobile-only city picker chip -->
+                    <button class="city-chip" id="city-chip" aria-label="Выбрать другой город">Сменить город</button>
+                </div>
+            </div>
+
+            <!-- Mobile city picker modal -->
+            <div class="city-modal" id="city-modal">
+                <div class="city-modal-backdrop" id="city-modal-backdrop"></div>
+                <div class="city-modal-panel">
+                    <div class="city-modal-header">
+                        <span>Выберите город</span>
+                        <button class="city-modal-close" id="city-modal-close" aria-label="Закрыть">×</button>
+                    </div>
+                    <input type="text" class="city-modal-input" id="modal-city-input" placeholder="Поиск города..."
+                        autocomplete="off" aria-label="Поиск города" />
+                    <div class="city-modal-ac" id="modal-ac-list" role="listbox"></div>
                 </div>
             </div>
 
@@ -1135,6 +1332,7 @@
                         aria-label="Компас направления киблы"></canvas>
                     <span class="widget-value" id="qibla-value" style="display:block;text-align:center;">—</span>
                     <span class="widget-sub" id="qibla-sub" style="display:block;text-align:center;"></span>
+                    <button class="qibla-ar-btn" id="qibla-ar-btn">🧭 Наведи телефон</button>
                 </div>
                 <div class="widget-card">
                     <span class="widget-icon" id="weather-icon">🌡️</span>
@@ -1163,7 +1361,7 @@
             <div class="content-card">
                 <div class="spiritual-heading">Духовное напоминание дня</div>
 
-                <div class="ayah-arabic" id="ayah-arabic">...</div>
+                <div class="ayah-arabic" id="ayah-arabic" lang="ar" dir="rtl">...</div>
                 <div class="ayah-translation" id="ayah-tr"></div>
                 <div class="content-source" id="ayah-ref"></div>
                 <button class="share-btn" id="sh-ayah" onclick="shareContent('ayah')">📋 Поделиться</button>
@@ -1220,7 +1418,7 @@
                 согласие с <a href="#" onclick="return false">Политикой конфиденциальности</a> и <a href="#"
                     onclick="return false">Пользовательским соглашением</a>.<br />
                 Данные о временах намаза: <a href="https://aladhan.com" target="_blank" rel="noopener">Aladhan.com</a>.
-                Геолокация по IP: <a href="https://ip-api.com" target="_blank" rel="noopener">ip-api.com</a>. Погода:
+                Геолокация по IP: <a href="https://ipwho.is" target="_blank" rel="noopener">ipwho.is</a>. Погода:
                 <a href="https://open-meteo.com" target="_blank" rel="noopener">Open-Meteo</a>. Поиск городов:
                 <a href="https://nominatim.openstreetmap.org" target="_blank" rel="noopener">Nominatim /
                     OpenStreetMap</a>. ©
@@ -1294,18 +1492,29 @@
         /* ══ STATE ══ */
         const S = { lat: null, lon: null, city: '', times: null, hijri: null, tickId: null };
 
+        /* Safe localStorage wrappers — in private mode Safari / blocked storage
+           the native API throws, which would crash the whole init. */
+        const store = {
+            _ok: (() => { try { return !!window.localStorage; } catch (e) { return false; } })(),
+            get(k) { try { return this._ok ? localStorage.getItem(k) : null; } catch (e) { return null; } },
+            set(k, v) { try { if (this._ok) localStorage.setItem(k, v); } catch (e) { } },
+        };
+
         /* ══ THEME ══ */
+        const THEME_COLORS = { dark: '#141412', light: '#ffffff', beige: '#ede8dd' };
         function setTheme(t) {
             document.body.setAttribute('data-theme', t);
-            localStorage.setItem('theme', t);
+            store.set('theme', t);
             document.querySelectorAll('.th-btn').forEach((b, i) => {
                 b.classList.toggle('active', ['dark', 'light', 'beige'][i] === t);
             });
+            const meta = document.getElementById('meta-theme-color');
+            if (meta) meta.setAttribute('content', THEME_COLORS[t] || THEME_COLORS.dark);
             const q = parseFloat(document.getElementById('qibla-value').textContent);
             if (!isNaN(q)) drawQiblaCompass(q);
         }
         (function () {
-            const saved = localStorage.getItem('theme') || 'dark';
+            const saved = store.get('theme') || 'dark';
             setTheme(saved);
         })();
 
@@ -1379,6 +1588,8 @@
         function pluralDays(n) { return pluralRu(n, 'день', 'дня', 'дней'); }
 
         /* ══ QIBLA DIRECTION ══ */
+        let _qiblaDeg = null; // cached qibla direction for AR mode
+
         function qiblaDirection(lat, lon) {
             const toRad = d => d * Math.PI / 180;
             const toDeg = r => r * 180 / Math.PI;
@@ -1394,7 +1605,12 @@
             const pts = ['С', 'СВ', 'В', 'ЮВ', 'Ю', 'ЮЗ', 'З', 'СЗ'];
             return pts[Math.round(deg / 45) % 8];
         }
-        function drawQiblaCompass(deg) {
+
+        /**
+         * @param {number} deg       — qibla bearing from north (0–360)
+         * @param {number|null} phoneHeading — device heading from north (0–360), null for static mode
+         */
+        function drawQiblaCompass(deg, phoneHeading) {
             const canvas = document.getElementById('qibla-canvas');
             if (!canvas) return;
             const ctx = canvas.getContext('2d');
@@ -1410,6 +1626,11 @@
             const colNeedleTail = isDark ? 'rgba(255,255,255,0.18)' : 'rgba(0,0,0,0.15)';
             const colDot = isDark ? '#e8e6df' : '#1a1a18';
 
+            // In AR mode the entire compass rotates opposite to the phone heading,
+            // so "north" on screen corresponds to real north.
+            const arMode = phoneHeading !== null && phoneHeading !== undefined;
+            const headingRad = arMode ? -(phoneHeading * Math.PI / 180) : 0;
+
             ctx.clearRect(0, 0, W, H);
 
             ctx.beginPath();
@@ -1420,9 +1641,10 @@
             ctx.lineWidth = 1.5;
             ctx.stroke();
 
+            // Cardinal directions — rotate with heading in AR mode
             const cardinals = [['С', 0], ['В', 90], ['Ю', 180], ['З', 270]];
             cardinals.forEach(([label, angle]) => {
-                const rad = (angle - 90) * Math.PI / 180;
+                const rad = ((angle - 90) * Math.PI / 180) + headingRad;
                 const x1 = cx + (R - 2) * Math.cos(rad);
                 const y1 = cy + (R - 2) * Math.sin(rad);
                 const x2 = cx + (R - 10) * Math.cos(rad);
@@ -1442,11 +1664,12 @@
                 ctx.fillText(label, lx, ly);
             });
 
-            const rad = (deg - 90) * Math.PI / 180;
-            const tipX = cx + (R - 14) * Math.cos(rad);
-            const tipY = cy + (R - 14) * Math.sin(rad);
-            const tailX = cx - 22 * Math.cos(rad);
-            const tailY = cy - 22 * Math.sin(rad);
+            // Qibla needle — bearing also shifts with heading in AR mode
+            const needleRad = ((deg - 90) * Math.PI / 180) + headingRad;
+            const tipX = cx + (R - 14) * Math.cos(needleRad);
+            const tipY = cy + (R - 14) * Math.sin(needleRad);
+            const tailX = cx - 22 * Math.cos(needleRad);
+            const tailY = cy - 22 * Math.sin(needleRad);
 
             ctx.beginPath();
             ctx.moveTo(tailX, tailY);
@@ -1473,7 +1696,73 @@
             ctx.arc(cx, cy, 4, 0, Math.PI * 2);
             ctx.fillStyle = colDot;
             ctx.fill();
+
+            // AR mode indicator
+            if (arMode) {
+                ctx.beginPath();
+                ctx.arc(cx, cy - R + 6, 3, 0, Math.PI * 2);
+                ctx.fillStyle = '#e76f51';
+                ctx.fill();
+            }
         }
+
+        /* ══ QIBLA AR MODE (DeviceOrientation) ══ */
+        let _arActive = false;
+        function startQiblaAR() {
+            if (_arActive) { stopQiblaAR(); return; }
+            if (!('DeviceOrientationEvent' in window)) {
+                showToast('Ваш браузер не поддерживает датчик ориентации');
+                return;
+            }
+            // iOS 13+ requires explicit permission
+            if (typeof DeviceOrientationEvent.requestPermission === 'function') {
+                DeviceOrientationEvent.requestPermission().then(perm => {
+                    if (perm === 'granted') _attachOrientation();
+                    else showToast('Разрешение на датчик не получено');
+                }).catch(() => showToast('Разрешение на датчик не получено'));
+            } else {
+                _attachOrientation();
+            }
+        }
+
+        function _attachOrientation() {
+            _arActive = true;
+            const btn = document.getElementById('qibla-ar-btn');
+            btn.textContent = '🧭 Стоп';
+            btn.classList.add('active');
+            document.getElementById('qibla-sub').textContent = 'Крутите телефон — стрелка покажет киблу';
+
+            function onOrientation(e) {
+                if (!_arActive) return;
+                // webkitCompassHeading (iOS) or alpha (Android, 0 when facing north)
+                let heading = e.webkitCompassHeading;
+                if (heading == null) {
+                    heading = e.alpha != null ? (360 - e.alpha) % 360 : null;
+                }
+                if (heading == null || _qiblaDeg == null) return;
+                drawQiblaCompass(_qiblaDeg, heading);
+            }
+
+            window.addEventListener('deviceorientation', onOrientation, true);
+            // Store listener ref for cleanup
+            btn._onOrientation = onOrientation;
+        }
+
+        function stopQiblaAR() {
+            _arActive = false;
+            const btn = document.getElementById('qibla-ar-btn');
+            if (btn._onOrientation) {
+                window.removeEventListener('deviceorientation', btn._onOrientation, true);
+                btn._onOrientation = null;
+            }
+            btn.textContent = '🧭 Наведи телефон';
+            btn.classList.remove('active');
+            document.getElementById('qibla-sub').textContent = '';
+            // Redraw static compass
+            if (_qiblaDeg != null) drawQiblaCompass(_qiblaDeg);
+        }
+
+        document.getElementById('qibla-ar-btn').addEventListener('click', startQiblaAR);
 
         /* ══ HIJRI HELPERS ══ */
         function formatHijri(hijri) {
@@ -1552,9 +1841,10 @@
         function updateWidgets() {
             if (S.lat != null && S.lon != null) {
                 const q = qiblaDirection(S.lat, S.lon);
+                _qiblaDeg = q;
                 document.getElementById('qibla-value').textContent = `${Math.round(q)}°`;
                 document.getElementById('qibla-sub').textContent = compassPoint(q);
-                drawQiblaCompass(q);
+                drawQiblaCompass(q); // static mode; AR mode redraws itself
             }
 
             const dj = daysUntilFriday();
@@ -1594,11 +1884,11 @@
         }
 
         /* ══ TICK (countdown + hero) ══ */
+        let _lastMinute = -1;
         function tick() {
             if (!S.times) return;
             const now = new Date();
             const nowMin = now.getHours() * 60 + now.getMinutes();
-            const nowSec = nowMin * 60 + now.getSeconds();
 
             // Find next prayer (skip Sunrise for "next namaz")
             const prayersOnly = PRAYERS.filter(p => !p.isSunrise);
@@ -1613,14 +1903,13 @@
             if (diffMin < 0) diffMin += 24 * 60;
             const diffSec = diffMin * 60 - now.getSeconds();
 
-            // Countdown display
+            // ── LIGHT update (every second): countdown + ring arc only ──
             const hh = Math.floor(diffSec / 3600);
             const mm = Math.floor((diffSec % 3600) / 60);
             const ss = diffSec % 60;
             const cdStr = hh > 0 ? `${pad(hh)}:${pad(mm)}` : `${pad(mm)}:${pad(ss)}`;
             document.getElementById('countdown').textContent = cdStr;
 
-            // Ring arc — fraction of time elapsed since previous prayer
             const prayerIdx = prayersOnly.indexOf(next);
             const prevP = prayersOnly[(prayerIdx - 1 + prayersOnly.length) % prayersOnly.length];
             const prevMin = toMin(S.times[prevP.key]);
@@ -1628,11 +1917,16 @@
             if (totalSpan <= 0) totalSpan += 24 * 60;
             let elapsed = nowMin - prevMin;
             if (elapsed < 0) elapsed += 24 * 60;
-            const frac = Math.min(elapsed / totalSpan, 1);
+            // smooth ring — account for seconds inside the current minute
+            const elapsedSec = elapsed * 60 + now.getSeconds();
+            const frac = Math.min(elapsedSec / (totalSpan * 60), 1);
             const circ = 2 * Math.PI * 60; // r=60
             document.getElementById('ring').setAttribute('stroke-dashoffset', circ * (1 - frac));
 
-            // Hero card
+            // ── HEAVY update (only when the minute changes): hero, timeline, date ──
+            if (nowMin === _lastMinute) return;
+            _lastMinute = nowMin;
+
             document.getElementById('next-name').textContent = next.ru;
             document.getElementById('next-at').textContent = S.times[next.key];
             const remText = hh > 0
@@ -1641,10 +1935,8 @@
             document.getElementById('hero-remaining').textContent = remText;
             applyHeroGradient(next.key);
 
-            // Timeline
             renderTimeline(S.times, nowMin);
 
-            // Date strip
             document.getElementById('loc-date').textContent = now.toLocaleDateString('ru-RU', { weekday: 'long', day: 'numeric', month: 'long' });
         }
 
@@ -1657,6 +1949,7 @@
             S.hijri = result.hijri;
             document.getElementById('hijri-date').textContent = formatHijri(S.hijri);
             updateWidgets();
+            _lastMinute = -1; // force a full re-render on the next tick
             tick();
             clearInterval(S.tickId);
             S.tickId = setInterval(tick, 1000);
@@ -1675,12 +1968,14 @@
 
         async function geoByIP() {
             try {
-                const r = await fetch('https://ip-api.com/json/?lang=ru&fields=status,lat,lon,city');
+                const r = await fetch('https://ipwho.is/?lang=ru&fields=success,latitude,longitude,city');
                 const j = await r.json();
-                if (j.status === 'success') {
+                if (j.success !== false && j.latitude != null && j.longitude != null) {
                     const method = document.getElementById('method-select').value;
-                    await applyCoords(j.lat, j.lon, j.city || 'Ваш город', method);
+                    await applyCoords(j.latitude, j.longitude, j.city || 'Ваш город', method);
                     document.getElementById('loc-method').textContent = 'IP';
+                } else {
+                    showToast('Не удалось определить город');
                 }
             } catch (e) { showToast('Не удалось определить город'); }
         }
@@ -1715,9 +2010,9 @@
                     list.style.display = 'none';
                     const method = document.getElementById('method-select').value;
                     await applyCoords(parseFloat(item.lat), parseFloat(item.lon), name, method);
-                    localStorage.setItem('saved_lat', item.lat);
-                    localStorage.setItem('saved_lon', item.lon);
-                    localStorage.setItem('saved_city', name);
+                    store.set('saved_lat', item.lat);
+                    store.set('saved_lon', item.lon);
+                    store.set('saved_city', name);
                 });
                 list.appendChild(d);
             });
@@ -1758,6 +2053,67 @@
         document.getElementById('method-select').addEventListener('change', () => {
             if (S.lat != null) loadTimes();
         });
+
+        /* ══ MOBILE CITY PICKER MODAL ══ */
+        (function () {
+            const modal = document.getElementById('city-modal');
+            const backdrop = document.getElementById('city-modal-backdrop');
+            const closeBtn = document.getElementById('city-modal-close');
+            const chip = document.getElementById('city-chip');
+            const modalInput = document.getElementById('modal-city-input');
+            const modalAcList = document.getElementById('modal-ac-list');
+            let modalTimeout = null;
+
+            function openModal() {
+                modal.classList.add('open');
+                modalInput.value = '';
+                modalAcList.innerHTML = '';
+                setTimeout(() => modalInput.focus(), 100);
+            }
+
+            function closeModal() {
+                modal.classList.remove('open');
+                modalInput.value = '';
+                modalAcList.innerHTML = '';
+            }
+
+            chip.addEventListener('click', openModal);
+            backdrop.addEventListener('click', closeModal);
+            closeBtn.addEventListener('click', closeModal);
+            document.addEventListener('keydown', e => {
+                if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
+            });
+
+            modalInput.addEventListener('input', e => {
+                clearTimeout(modalTimeout);
+                const v = e.target.value.trim();
+                if (v.length < 2) { modalAcList.innerHTML = ''; return; }
+                modalTimeout = setTimeout(async () => {
+                    try {
+                        const r = await fetch(`https://nominatim.openstreetmap.org/search?format=json&limit=6&accept-language=ru&q=${encodeURIComponent(v)}`);
+                        const j = await r.json();
+                        modalAcList.innerHTML = '';
+                        if (!j.length) return;
+                        j.forEach(item => {
+                            const d = document.createElement('div');
+                            d.className = 'ac-item';
+                            d.setAttribute('role', 'option');
+                            const name = item.display_name.split(',').slice(0, 3).join(', ');
+                            d.textContent = name;
+                            d.addEventListener('click', async () => {
+                                closeModal();
+                                const method = document.getElementById('method-select').value;
+                                await applyCoords(parseFloat(item.lat), parseFloat(item.lon), name, method);
+                                store.set('saved_lat', item.lat);
+                                store.set('saved_lon', item.lon);
+                                store.set('saved_city', name);
+                            });
+                            modalAcList.appendChild(d);
+                        });
+                    } catch (e) { /* silent */ }
+                }, 300);
+            });
+        })();
 
         /* ══ PUSH NOTIFICATIONS ══ */
         async function requestPush() {
@@ -1826,9 +2182,9 @@
             }, 3000);
 
             // Try saved location first
-            const savedLat = localStorage.getItem('saved_lat');
-            const savedLon = localStorage.getItem('saved_lon');
-            const savedCity = localStorage.getItem('saved_city');
+            const savedLat = store.get('saved_lat');
+            const savedLon = store.get('saved_lon');
+            const savedCity = store.get('saved_city');
             if (savedLat && savedLon && savedCity) {
                 await applyCoords(parseFloat(savedLat), parseFloat(savedLon), savedCity,
                     document.getElementById('method-select').value);
@@ -1845,9 +2201,9 @@
                                 const city = j.address?.city || j.address?.town || j.address?.village || j.address?.county || 'Ваш город';
                                 document.getElementById('loc-method').textContent = 'GPS';
                                 await applyCoords(lat, lon, city, document.getElementById('method-select').value);
-                                localStorage.setItem('saved_lat', lat);
-                                localStorage.setItem('saved_lon', lon);
-                                localStorage.setItem('saved_city', city);
+                                store.set('saved_lat', lat);
+                                store.set('saved_lon', lon);
+                                store.set('saved_city', city);
                             } catch (e) {
                                 await applyCoords(lat, lon, 'Ваш город', document.getElementById('method-select').value);
                             }
