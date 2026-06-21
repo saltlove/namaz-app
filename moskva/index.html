@@ -1,0 +1,2766 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Время намаза в Москве сегодня — точное расписание молитв</title>
+    <meta name="description"
+        content="Актуальное время намаза в Москве на сегодня. Фаджр, Шурук, Зухр, Аср, Магриб, Иша — точное расписание молитв с хиджрийской датой." />
+    <meta name="theme-color" id="meta-theme-color" content="#141412" />
+    <link rel="manifest" href="../manifest.json" />
+    <link rel="icon" href="../icon-192.png" type="image/png" />
+    <link rel="apple-touch-icon" href="../apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Намаз" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Время намаза в Москве сегодня — точное расписание молитв" />
+    <meta property="og:description"
+        content="Точное время намаза для вашего города. Фаджр, Зухр, Аср, Магриб, Иша. Хадис и аят дня." />
+    <meta property="og:image" content="../icon-512.png" />
+    <meta property="og:locale" content="ru_RU" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500..700&family=Inter:wght@400;500;600;700&family=Amiri:wght@400;700&display=swap"
+        rel="stylesheet" />
+    <link rel="canonical" href="https://время-намаза.рф/moskva/" />
+    <meta property="og:url" content="https://время-намаза.рф/moskva/" />
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* ── DESIGN TOKENS ── */
+        :root {
+            --green: #2d6a4f;
+            --green-dark: #1b4332;
+
+            --r-sm: 10px;
+            --r: 14px;
+            --r-lg: 18px;
+            --r-xl: 22px;
+
+            /* type scale: 12 / 14 / 16 / 20 / 32 / 48 / 64 */
+            --fs-xs: 12px;
+            --fs-sm: 14px;
+            --fs-base: 16px;
+            --fs-lg: 20px;
+            --fs-xl: 32px;
+            --fs-2xl: 48px;
+            --fs-3xl: 64px;
+
+            --ff-display: 'Fraunces', Georgia, serif;
+            --ff-body: 'Inter', system-ui, sans-serif;
+            --ff-arabic: 'Amiri', serif;
+
+            --container: 1480px;
+            --ease: .2s ease;
+        }
+
+        /* ── THEMES ── */
+        [data-theme="dark"] {
+            --bg: #0f0f0d;
+            --bg-side: #141412;
+            --bg-card: #1c1c19;
+            --bg-card2: #222220;
+            --text: #e8e6df;
+            --text-muted: #a0a09a;
+            --text-hint: #5a5a56;
+            --text-inactive: #7a7a76;
+            --border: rgba(255, 255, 255, 0.06);
+            --border-med: rgba(255, 255, 255, 0.10);
+            --green-light: #0d2e1f;
+            --topbar-bg: #141412;
+            --shadow: 0 2px 8px rgba(0, 0, 0, .18), 0 1px 2px rgba(0, 0, 0, .12);
+            --scrim: rgba(0, 0, 0, .30);
+        }
+
+        [data-theme="light"] {
+            --bg: #f5f5f2;
+            --bg-side: #ffffff;
+            --bg-card: #ffffff;
+            --bg-card2: #f9f9f7;
+            --text: #1a1a18;
+            --text-muted: #5e5e5a;
+            --text-hint: #9e9e9a;
+            --text-inactive: #b6b6b1;
+            --border: rgba(0, 0, 0, 0.05);
+            --border-med: rgba(0, 0, 0, 0.09);
+            --green-light: #e8f5ee;
+            --topbar-bg: #ffffff;
+            --shadow: 0 1px 4px rgba(30, 30, 20, .07), 0 0 0 0.5px rgba(0, 0, 0, 0.04);
+            --scrim: rgba(0, 0, 0, .20);
+        }
+
+        [data-theme="beige"] {
+            --bg: #f0ebe0;
+            --bg-side: #ede8dd;
+            --bg-card: #faf6ef;
+            --bg-card2: #f5f0e8;
+            --text: #1e1608;
+            --text-muted: #4a3f2e;
+            --text-hint: #6b5c44;
+            --text-inactive: #9a8c7a;
+            --border: rgba(100, 80, 40, 0.07);
+            --border-med: rgba(100, 80, 40, 0.13);
+            --green-light: #dff0e8;
+            --topbar-bg: #ede8dd;
+            --shadow: 0 1px 4px rgba(60, 40, 10, .08), 0 0 0 0.5px rgba(100, 80, 40, 0.06);
+            --scrim: rgba(35, 22, 5, .22);
+        }
+
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--ff-body);
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.5;
+            min-height: 100vh;
+            transition: background .25s, color .25s;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+
+            /* Make sure entrance-animated elements are fully visible */
+            .tl-item {
+                opacity: 1 !important;
+                transform: none !important;
+            }
+
+            .hero-stars,
+            .hero-card.is-night .hero-stars {
+                opacity: 0 !important;
+            }
+
+            .hero-card {
+                animation: none !important;
+                background-position: 50% 50% !important;
+            }
+        }
+
+        :focus-visible {
+            outline: 2px solid var(--green);
+            outline-offset: 2px;
+        }
+
+        .visually-hidden {
+            position: absolute !important;
+            width: 1px; height: 1px;
+            padding: 0; margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        /* ── TOPBAR ── */
+        .topbar {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: var(--topbar-bg);
+            border-bottom: 0.5px solid var(--border-med);
+            height: 60px;
+        }
+
+        .topbar-inner {
+            max-width: var(--container);
+            margin: 0 auto;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 0 24px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            flex-shrink: 0;
+        }
+
+        .logo-icon {
+            font-size: 20px;
+        }
+
+        .logo-text {
+            font-size: var(--fs-sm);
+            font-weight: 600;
+            color: var(--text);
+            letter-spacing: .01em;
+        }
+
+        .topbar-nav {
+            display: flex;
+            gap: 4px;
+            overflow-x: auto;
+        }
+
+        .t-btn {
+            font-size: var(--fs-xs);
+            font-family: inherit;
+            color: var(--text-muted);
+            padding: 6px 13px;
+            border: 0.5px solid var(--border-med);
+            border-radius: 20px;
+            cursor: pointer;
+            background: transparent;
+            transition: background var(--ease), color var(--ease), border-color var(--ease);
+            white-space: nowrap;
+        }
+
+        .t-btn:hover {
+            background: var(--bg-card2);
+            color: var(--text);
+        }
+
+        .t-btn.active {
+            background: var(--green-light);
+            color: var(--green);
+            border-color: var(--green);
+            font-weight: 500;
+        }
+
+        .topbar-right {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-left: auto;
+            flex-shrink: 0;
+        }
+
+        .topbar-loc {
+            font-size: var(--fs-xs);
+            color: var(--text-muted);
+            padding: 6px 13px;
+            border: 0.5px solid var(--border-med);
+            border-radius: 20px;
+            white-space: nowrap;
+        }
+
+        /* Theme switcher */
+        .theme-switcher {
+            display: flex;
+            gap: 2px;
+            border: 0.5px solid var(--border-med);
+            border-radius: 20px;
+            overflow: hidden;
+            padding: 2px;
+        }
+
+        .th-btn {
+            width: 26px;
+            height: 26px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-family: inherit;
+            cursor: pointer;
+            background: transparent;
+            border: none;
+            border-radius: 50%;
+            color: var(--text-muted);
+            transition: background var(--ease), color var(--ease);
+            line-height: 1;
+        }
+
+        .th-btn:hover {
+            background: var(--bg-card2);
+            color: var(--text);
+        }
+
+        .th-btn.active {
+            background: var(--text);
+            color: var(--bg);
+        }
+
+        #install-btn {
+            display: none;
+            font-size: var(--fs-xs);
+            font-family: inherit;
+            color: #fff;
+            padding: 6px 13px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            background: var(--green);
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        /* ── LAYOUT ── */
+        .page {
+            max-width: var(--container);
+            margin: 0 auto;
+            padding: 28px 24px;
+            display: grid;
+            grid-template-columns: 232px 1fr 320px;
+            gap: 24px;
+            align-items: start;
+        }
+
+        @media (max-width: 1000px) {
+            .page {
+                grid-template-columns: 1fr;
+            }
+
+            .col-left,
+            .col-right {
+                position: static;
+            }
+
+            /* On mobile the center column (prayer times) is the priority,
+               so settings move below it. */
+            .col-center { order: 1; }
+            .col-right  { order: 2; }
+            .col-left   { order: 3; }
+        }
+
+        @media (max-width: 640px) {
+            .page {
+                padding: 16px;
+                gap: 16px;
+            }
+        }
+
+        /* ── LEFT SIDEBAR ── */
+        .col-left {
+            background: var(--bg-side);
+            border: 0.5px solid var(--border);
+            border-radius: var(--r-xl);
+            padding: 18px;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 84px;
+        }
+
+        .sb-label {
+            font-size: var(--fs-xs);
+            letter-spacing: 0.09em;
+            text-transform: uppercase;
+            color: var(--text-hint);
+            margin-bottom: 8px;
+            padding: 0 4px;
+        }
+
+        .city-input {
+            width: 100%;
+            padding: 9px 11px;
+            font-size: var(--fs-sm);
+            font-family: inherit;
+            border: 0.5px solid var(--border-med);
+            border-radius: var(--r-sm);
+            background: var(--bg);
+            color: var(--text);
+            outline: none;
+            transition: border-color var(--ease);
+            margin-bottom: 6px;
+        }
+
+        .city-input:focus {
+            border-color: var(--green);
+        }
+
+        .city-wrap {
+            position: relative;
+            margin-bottom: 14px;
+        }
+
+        .autocomplete-list {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: calc(100% + 2px);
+            background: var(--bg-card);
+            border: 0.5px solid var(--border-med);
+            border-radius: var(--r-sm);
+            z-index: 50;
+            max-height: 200px;
+            overflow-y: auto;
+            display: none;
+            box-shadow: var(--shadow);
+        }
+
+        .ac-item {
+            padding: 9px 12px;
+            font-size: var(--fs-sm);
+            cursor: pointer;
+            border-bottom: 0.5px solid var(--border);
+            color: var(--text);
+        }
+
+        .ac-item:last-child {
+            border-bottom: none;
+        }
+
+        .ac-item:hover,
+        .ac-item.focused {
+            background: var(--green-light);
+            color: var(--green);
+        }
+
+        .city-hint {
+            font-size: var(--fs-xs);
+            color: var(--text-hint);
+            padding: 0 2px;
+        }
+
+        .sb-divider {
+            height: 0.5px;
+            background: var(--border);
+            margin: 16px 0;
+        }
+
+        .method-select {
+            width: 100%;
+            padding: 9px 8px;
+            font-size: var(--fs-xs);
+            font-family: inherit;
+            border: 0.5px solid var(--border-med);
+            border-radius: var(--r-sm);
+            background: var(--bg);
+            color: var(--text);
+            outline: none;
+            margin-top: 4px;
+        }
+
+        /* ── CENTER COLUMN ── */
+        .col-center {
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* Date / location strip */
+        .date-strip {
+            background: var(--bg-card);
+            border: 0.5px solid var(--border);
+            border-radius: var(--r-lg);
+            padding: 14px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap;
+            box-shadow: var(--shadow);
+        }
+
+        .ds-loc {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: var(--fs-lg);
+            font-weight: 500;
+        }
+
+        .loc-badge {
+            font-size: var(--fs-xs);
+            padding: 2px 8px;
+            border: 0.5px solid var(--border-med);
+            border-radius: 20px;
+            color: var(--text-hint);
+            letter-spacing: 0.04em;
+            font-weight: 400;
+        }
+
+        .ds-dates {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            font-size: var(--fs-sm);
+            color: var(--text-muted);
+        }
+
+        .ds-sep {
+            color: var(--text-hint);
+        }
+
+        /* ── MOBILE CITY CHIP ── */
+        .city-chip {
+            display: none; /* hidden on desktop */
+            font-size: var(--fs-xs);
+            font-family: inherit;
+            padding: 4px 12px;
+            border: 0.5px solid var(--green);
+            border-radius: 20px;
+            background: transparent;
+            color: var(--green);
+            cursor: pointer;
+            white-space: nowrap;
+            font-weight: 500;
+            transition: background var(--ease), color var(--ease);
+        }
+
+        .city-chip:hover {
+            background: var(--green);
+            color: var(--bg);
+        }
+
+        @media (max-width: 1000px) {
+            .city-chip {
+                display: inline-flex;
+            }
+        }
+
+        /* ── MOBILE CITY PICKER MODAL ── */
+        .city-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 100;
+            padding: 0 16px;
+            align-items: flex-start;
+            justify-content: center;
+        }
+
+        .city-modal.open {
+            display: flex;
+        }
+
+        .city-modal-backdrop {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.55);
+            animation: fadeIn 0.2s ease;
+        }
+
+        .city-modal-panel {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            margin-top: 20vh;
+            background: var(--bg-card);
+            border: 0.5px solid var(--border-med);
+            border-radius: var(--r-xl);
+            box-shadow: 0 24px 48px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            animation: slideUp 0.25s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(24px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .city-modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 18px 0;
+            font-weight: 600;
+            font-size: var(--fs-sm);
+            color: var(--text);
+        }
+
+        .city-modal-close {
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-family: inherit;
+            cursor: pointer;
+            background: transparent;
+            border: none;
+            border-radius: 50%;
+            color: var(--text-muted);
+            transition: background var(--ease), color var(--ease);
+        }
+
+        .city-modal-close:hover {
+            background: var(--bg-card2);
+            color: var(--text);
+        }
+
+        .city-modal-input {
+            width: calc(100% - 36px);
+            margin: 12px 18px;
+            padding: 10px 12px;
+            font-size: var(--fs-sm);
+            font-family: inherit;
+            border: 0.5px solid var(--border-med);
+            border-radius: var(--r-sm);
+            background: var(--bg);
+            color: var(--text);
+            outline: none;
+            transition: border-color var(--ease);
+        }
+
+        .city-modal-input:focus {
+            border-color: var(--green);
+        }
+
+        .city-modal-ac {
+            margin: 0 18px 18px;
+            max-height: 50vh;
+            overflow-y: auto;
+        }
+
+        /* Push banner */
+        .push-banner {
+            background: var(--bg-card);
+            border: 0.5px solid var(--green);
+            border-radius: var(--r-lg);
+            padding: 14px 18px;
+            display: none;
+            align-items: center;
+            gap: 12px;
+            box-shadow: var(--shadow);
+        }
+
+        .push-banner.visible {
+            display: flex;
+        }
+
+        .push-banner-text {
+            font-size: var(--fs-sm);
+            color: var(--text);
+            flex: 1;
+        }
+
+        .push-banner-text strong {
+            color: var(--green);
+        }
+
+        .push-ok {
+            font-size: var(--fs-xs);
+            font-family: inherit;
+            background: var(--green);
+            color: #fff;
+            border: none;
+            border-radius: var(--r-sm);
+            padding: 8px 14px;
+            cursor: pointer;
+            white-space: nowrap;
+            font-weight: 500;
+            transition: background var(--ease);
+        }
+
+        .push-ok:hover {
+            background: var(--green-dark);
+        }
+
+        .push-close {
+            background: none;
+            border: none;
+            color: var(--text-hint);
+            cursor: pointer;
+            font-size: 18px;
+            padding: 0;
+            line-height: 1;
+        }
+
+        /* ── QIBLA AR BUTTON ── */
+        .qibla-ar-btn {
+            display: none; /* desktop: hidden by default, shown only on touch devices */
+            width: 100%;
+            margin-top: 6px;
+            padding: 6px 0;
+            font-size: var(--fs-xs);
+            font-family: inherit;
+            border: 0.5px solid var(--green);
+            border-radius: var(--r-sm);
+            background: transparent;
+            color: var(--green);
+            cursor: pointer;
+            font-weight: 500;
+            transition: background var(--ease), color var(--ease);
+        }
+
+        .qibla-ar-btn:hover,
+        .qibla-ar-btn.active {
+            background: var(--green);
+            color: var(--bg);
+        }
+
+        /* Show on touch-capable devices and small screens */
+        @media (hover: none), (max-width: 1000px) {
+            .qibla-ar-btn {
+                display: block;
+            }
+        }
+
+        /* Hero row: big "next prayer" card + countdown ring */
+        .hero-row {
+            display: grid;
+            grid-template-columns: 1fr 240px;
+            gap: 20px;
+        }
+
+        @media (max-width: 680px) {
+            .hero-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .hero-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: var(--r-xl);
+            padding: 40px 44px;
+            color: #f7f4ec;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 10px;
+            min-height: 200px;
+            box-shadow: var(--shadow);
+            transition: background-image .6s ease;
+            background-color: var(--green-dark);
+            /* animated gradient: stretched size lets background-position drift */
+            background-size: 220% 220%;
+            background-position: 0% 50%;
+            animation: heroGradientShift 20s ease-in-out infinite alternate;
+        }
+
+        /* keep text above the star layer */
+        .hero-card > :not(.hero-stars) {
+            position: relative;
+            z-index: 1;
+        }
+
+        @keyframes heroGradientShift {
+            0%   { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+
+        /* ── NIGHT STAR LAYER (Isha / Fajr) ── */
+        .hero-stars {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 1.2s ease;
+        }
+
+        .hero-card.is-night .hero-stars {
+            opacity: 1;
+        }
+
+        .hero-stars span {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #f7f4ec;
+            border-radius: 50%;
+            animation: twinkle 3s ease-in-out infinite;
+        }
+
+        .hero-stars span.lg {
+            width: 3px;
+            height: 3px;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.15; transform: scale(0.7); }
+            50%      { opacity: 0.95; transform: scale(1); }
+        }
+
+        @media (max-width: 680px) {
+            .hero-card {
+                padding: 28px 28px;
+                min-height: 160px;
+            }
+        }
+
+        .hero-eyebrow {
+            font-size: var(--fs-xs);
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            opacity: .72;
+        }
+
+        .hero-name {
+            font-family: var(--ff-display);
+            font-size: var(--fs-2xl);
+            font-weight: 600;
+            line-height: 1;
+            letter-spacing: -.01em;
+            opacity: .88;
+        }
+
+        @media (max-width: 680px) {
+            .hero-name {
+                font-size: 36px;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .hero-name {
+                font-size: 30px;
+            }
+        }
+
+        .hero-meta {
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+            flex-wrap: wrap;
+            font-size: var(--fs-xl);
+            font-weight: 600;
+            opacity: 1;
+            font-variant-numeric: tabular-nums;
+            letter-spacing: -0.01em;
+        }
+
+        .hero-sep {
+            opacity: .5;
+        }
+
+        /* Countdown ring card */
+        .ring-card {
+            background: var(--bg-card);
+            border: 0.5px solid var(--border);
+            border-radius: var(--r-xl);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            box-shadow: var(--shadow);
+        }
+
+        .cd-label {
+            font-size: var(--fs-xs);
+            color: var(--text-hint);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .cd-ring-wrap {
+            position: relative;
+            width: 140px;
+            height: 140px;
+        }
+
+        .cd-ring-wrap svg {
+            width: 140px;
+            height: 140px;
+        }
+
+        .cd-value {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--fs-xl);
+            font-weight: 600;
+            font-variant-numeric: tabular-nums;
+            letter-spacing: -0.02em;
+            color: var(--text);
+        }
+
+        @media (max-width: 680px) {
+
+            .cd-ring-wrap,
+            .cd-ring-wrap svg {
+                width: 110px;
+                height: 110px;
+            }
+        }
+
+        /* ── PRAYER TIMELINE ── */
+        .timeline {
+            background: var(--bg-card);
+            border: 0.5px solid var(--border);
+            border-radius: var(--r-xl);
+            padding: 30px 28px 22px;
+            box-shadow: var(--shadow);
+        }
+
+        .timeline-track {
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            gap: 4px;
+        }
+
+        .timeline-track::before {
+            content: '';
+            position: absolute;
+            left: 10px;
+            right: 10px;
+            top: 32px;
+            height: 2px;
+            background: var(--border-med);
+            z-index: 0;
+        }
+
+        .tl-item {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            flex: 1;
+            min-width: 0;
+            /* staggered entrance animation; delay set inline per-item */
+            opacity: 0;
+            transform: translateY(8px);
+            animation: tlFadeIn 0.5s ease forwards;
+        }
+
+        @keyframes tlFadeIn {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .tl-name {
+            font-size: var(--fs-xs);
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            height: 14px;
+        }
+
+        .tl-dot {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--bg-card2);
+            border: 2px solid var(--border-med);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            color: #fff;
+            transition: background var(--ease), border-color var(--ease), box-shadow var(--ease);
+        }
+
+        .tl-item.is-done .tl-dot {
+            background: var(--green);
+            border-color: var(--green);
+        }
+
+        .tl-item.is-active .tl-dot {
+            width: 24px;
+            height: 24px;
+            background: var(--green);
+            border-color: var(--green);
+            box-shadow: 0 0 0 5px var(--green-light);
+        }
+
+        .tl-item.is-sunrise .tl-dot {
+            background: transparent;
+            border-style: dashed;
+            width: 12px;
+            height: 12px;
+        }
+
+        .tl-time {
+            font-size: var(--fs-sm);
+            font-weight: 500;
+            font-variant-numeric: tabular-nums;
+            color: var(--text);
+        }
+
+        .tl-item.is-active .tl-name,
+        .tl-item.is-active .tl-time {
+            color: var(--green);
+            font-weight: 600;
+        }
+
+        .tl-item.is-done .tl-name,
+        .tl-item.is-done .tl-time {
+            color: var(--text-inactive);
+        }
+
+        @media (max-width: 640px) {
+            .timeline {
+                padding: 22px 12px 16px;
+            }
+
+            .timeline-track::before {
+                left: 6px;
+                right: 6px;
+                top: 28px;
+            }
+
+            .tl-name {
+                font-size: 10px;
+            }
+
+            .tl-time {
+                font-size: 12px;
+            }
+        }
+
+        /* ── WIDGETS ROW ── */
+        .widgets-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 16px;
+        }
+
+        .widget-card {
+            background: var(--bg-card);
+            border: 0.5px solid var(--border);
+            border-radius: var(--r-lg);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            box-shadow: var(--shadow);
+            transition: transform var(--ease), border-color var(--ease);
+        }
+
+        .widget-card:hover {
+            transform: translateY(-2px);
+            border-color: var(--border-med);
+        }
+
+        .widget-icon {
+            font-size: var(--fs-lg);
+            display: inline-block;
+            transition: transform .4s ease;
+        }
+
+        .widget-label {
+            font-size: var(--fs-xs);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--text-hint);
+        }
+
+        .widget-value {
+            font-size: var(--fs-xl);
+            font-weight: 600;
+            font-variant-numeric: tabular-nums;
+            letter-spacing: -0.01em;
+        }
+
+        .widget-sub {
+            font-size: var(--fs-sm);
+            color: var(--text-muted);
+        }
+
+        @keyframes flash-pulse {
+
+            0%,
+            100% {
+                box-shadow: var(--shadow);
+            }
+
+            50% {
+                box-shadow: 0 0 0 4px var(--green-light), var(--shadow);
+            }
+        }
+
+        .flash {
+            animation: flash-pulse .6s ease-in-out 2;
+        }
+
+        /* ── RIGHT COLUMN ── */
+        .col-right {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            position: sticky;
+            top: 84px;
+        }
+
+        .content-card {
+            background: var(--bg-card);
+            border: 0.5px solid var(--border);
+            border-radius: var(--r-xl);
+            padding: 24px;
+            box-shadow: var(--shadow);
+            transition: transform var(--ease);
+        }
+
+        .content-card:hover {
+            transform: translateY(-2px);
+        }
+
+        .spiritual-heading {
+            font-family: var(--ff-display);
+            font-size: var(--fs-lg);
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .spiritual-divider {
+            height: 0.5px;
+            background: var(--border);
+            margin: 40px 0;
+        }
+
+        .hadith-text {
+            font-size: var(--fs-base);
+            line-height: 1.8;
+            color: var(--text);
+            font-style: italic;
+            border-left: 2.5px solid var(--border-med);
+            padding-left: 12px;
+            margin-bottom: 20px;
+        }
+
+        .content-source {
+            font-size: var(--fs-xs);
+            color: var(--text-hint);
+            margin-bottom: 14px;
+        }
+
+        .ayah-translation {
+            font-size: var(--fs-base);
+            line-height: 1.7;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+        }
+
+        .share-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-size: var(--fs-xs);
+            color: var(--text-muted);
+            background: none;
+            border: 0.5px solid var(--border-med);
+            border-radius: 20px;
+            padding: 4px 12px;
+            cursor: pointer;
+            font-family: inherit;
+            transition: background var(--ease), color var(--ease);
+        }
+
+        .share-btn:hover {
+            background: var(--bg-card2);
+            color: var(--text);
+        }
+
+        .share-btn.copied {
+            color: var(--text-hint);
+            border-color: var(--border-med);
+        }
+
+        /* ── FOOTER ── */
+        .site-footer {
+            max-width: var(--container);
+            margin: 8px auto 0;
+            padding: 28px 24px;
+            border-top: 0.5px solid var(--border-med);
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 24px;
+        }
+
+        @media (max-width: 640px) {
+            .site-footer {
+                grid-template-columns: 1fr 1fr;
+                padding: 24px 16px;
+            }
+        }
+
+        .ft-head {
+            font-size: var(--fs-xs);
+            font-weight: 600;
+            color: var(--text-muted);
+            letter-spacing: 0.05em;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        .ft-link, a.ft-link {
+            display: block;
+            font-size: var(--fs-sm);
+            color: var(--text-hint);
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-family: inherit;
+            text-align: left;
+            padding: 3px 0;
+            line-height: 1.6;
+            text-decoration: none;
+            transition: color var(--ease);
+        }
+
+        .ft-link:hover {
+            color: var(--green);
+        }
+
+        .footer-legal {
+            grid-column: 1 / -1;
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 0.5px solid var(--border);
+            font-size: var(--fs-xs);
+            color: var(--text-hint);
+            line-height: 1.8;
+        }
+
+        .footer-legal a {
+            color: var(--text-hint);
+            text-decoration: underline;
+        }
+
+        .footer-legal a:hover {
+            color: var(--green);
+        }
+
+        /* ── TOAST ── */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--text);
+            color: var(--bg);
+            padding: 10px 18px;
+            border-radius: var(--r);
+            font-size: var(--fs-sm);
+            z-index: 999;
+            opacity: 0;
+            transform: translateY(6px);
+            transition: opacity 0.22s, transform 0.22s;
+            pointer-events: none;
+            box-shadow: var(--shadow);
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ══ Inline SVG icons (Lucide-style, inherit currentColor) ══ */
+        .ico {
+            display: inline-block;
+            width: 1em;
+            height: 1em;
+            vertical-align: -0.15em;
+            stroke: currentColor;
+            fill: none;
+            flex-shrink: 0;
+        }
+        .ico-play { fill: currentColor; stroke: none; }
+
+        /* Logo: slightly larger, decorative */
+        .logo-icon .ico,
+        .logo-icon svg { width: 1.4em; height: 1.4em; color: var(--green); }
+
+        /* Theme switcher buttons: icon-only, centered */
+        .th-btn .ico { width: 1.15em; height: 1.15em; display: block; margin: auto; }
+
+        /* Widget / content icons: monochrome accent */
+        .widget-icon { color: var(--green); display: flex; align-items: center; gap: 4px; }
+        .widget-icon .ico { width: 1.25em; height: 1.25em; }
+
+        /* Date strip location pin */
+        .ds-loc .ico { color: var(--green); width: 1.1em; height: 1.1em; }
+
+        /* Timeline dots: tiny */
+        .tl-dot .ico { width: 0.85em; height: 0.85em; }
+
+        /* Buttons with icon + text */
+        #install-btn .ico,
+        .qibla-ar-btn .ico,
+        .share-btn .ico {
+            width: 1em; height: 1em;
+            vertical-align: -0.125em;
+            margin-right: 2px;
+        }
+
+        /* Push banner bell */
+        .push-banner .ico { color: var(--green); width: 1.2em; height: 1.2em; }
+    </style>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Время намаза в Москве сегодня — точное расписание молитв",
+        "description": "Актуальное время намаза в Москве на сегодня. Фаджр, Шурук, Зухр, Аср, Магриб, Иша — точное расписание молитв с хиджрийской датой.",
+        "url": "https://время-намаза.рф/moskva/",
+        "inLanguage": "ru",
+        "isPartOf": {
+            "@type": "WebSite",
+            "name": "Время намаза",
+            "url": "https://время-намаза.рф"
+        },
+        "mainEntity": {
+            "@type": "FAQPage",
+            "mainEntity": [{
+                "@type": "Question",
+                "name": "Какое время намаза в Москве сегодня?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Актуальное время намаза в Москве: Фаджр, Шурук, Зухр, Аср, Магриб, Иша. Расписание обновляется автоматически по данным Aladhan API."
+                }
+            }]
+        }
+    }
+    </script>
+</head>
+
+<body data-theme="dark">
+
+    <!-- ══════ SVG ICON SPRITE (Lucide, ISC license) ══════ -->
+    <svg xmlns="http://www.w3.org/2000/svg" style="display:none;" aria-hidden="true">
+        <symbol id="i-mosque" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2c-1 1.5-1 3 0 4 1-1 1-2.5 0-4z"/>
+            <path d="M4 22V11c0-2 2-4 4-4M20 22V11c0-2-2-4-4-4"/>
+            <path d="M9 22v-4a3 3 0 0 1 6 0v4"/>
+            <path d="M2 22h20"/>
+            <path d="M4 13c1.5-1 3-1 4 0M20 13c-1.5-1-3-1-4 0"/>
+        </symbol>
+        <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/>
+        </symbol>
+        <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="4"/>
+            <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>
+        </symbol>
+        <symbol id="i-leaf" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/>
+            <path d="M2 21c0-3 1.85-5.36 5.08-6"/>
+        </symbol>
+        <symbol id="i-contrast" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M12 2a10 10 0 0 0 0 20z" fill="currentColor" stroke="none"/>
+        </symbol>
+        <symbol id="i-download" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+        </symbol>
+        <symbol id="i-bell" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/>
+            <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>
+        </symbol>
+        <symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/>
+            <circle cx="12" cy="10" r="3"/>
+        </symbol>
+        <symbol id="i-compass" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/>
+        </symbol>
+        <symbol id="i-handshake" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M11 17l-2 2a1.4 1.4 0 0 1-2-2l2-2"/>
+            <path d="M14 14l2 2a1.4 1.4 0 0 0 2-2l-3-3"/>
+            <path d="M3 11l3-3 4 1 2-2 4 4 5 1-1 5-3 3-2-2"/>
+            <path d="M18 13l3-1"/>
+        </symbol>
+        <symbol id="i-share" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="18" cy="5" r="3"/>
+            <circle cx="6" cy="12" r="3"/>
+            <circle cx="18" cy="19" r="3"/>
+            <path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/>
+        </symbol>
+        <symbol id="i-sunrise" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 18a5 5 0 0 0-10 0"/>
+            <path d="M12 2v6M4.2 10.2l1.4 1.4M19.8 10.2l-1.4 1.4M2 18h2M20 18h2M12 9l-2 2M12 9l2 2"/>
+            <path d="M8 7l4-4 4 4M2 22h20"/>
+        </symbol>
+        <symbol id="i-cloud-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2v1M5.6 4.6l.7.7M2 11h1M18 4a4 4 0 0 0-4 4M16 11a4 4 0 1 0-8 0"/>
+            <path d="M16 18a3 3 0 0 0 0-6 4 4 0 0 0-7.5-1.5A3.5 3.5 0 0 0 7 18z"/>
+        </symbol>
+        <symbol id="i-sunset" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 18a5 5 0 0 0-10 0"/>
+            <path d="M12 9V2M4.2 10.2l1.4 1.4M2 18h2M20 18h2M19.8 10.2l-1.4 1.4"/>
+            <path d="M8 7l4 4 4-4M2 22h20"/>
+        </symbol>
+        <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"/>
+        </symbol>
+        <symbol id="i-play" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+            <polygon points="6 3 20 12 6 21 6 3"/>
+        </symbol>
+        <symbol id="i-book" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+        </symbol>
+        <symbol id="i-kaaba" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="4" y="8" width="16" height="12" rx="1"/>
+            <path d="M4 13h16"/>
+            <path d="M8 8V5h8v3"/>
+            <path d="M7 16h10"/>
+        </symbol>
+    </svg>
+
+    <!-- ══════ TOPBAR ══════ -->
+    <header class="topbar">
+        <div class="topbar-inner">
+            <a class="logo" href="./">
+                <span class="logo-icon"><svg class="ico"><use href="#i-mosque"/></svg></span>
+                <span class="logo-text">Время намаза</span>
+            </a>
+
+            <nav class="topbar-nav" aria-label="Навигация">
+                <button class="t-btn active">Сегодня</button>
+                <button class="t-btn" onclick="showToast('Календарь — в разработке')">Календарь</button>
+                <button class="t-btn" onclick="focusWidget('qibla-widget')">Кибла</button>
+                <button class="t-btn" onclick="showToast('Трекер — в разработке')">24ч-трекер</button>
+            </nav>
+
+            <div class="topbar-right">
+                <span class="topbar-loc" id="topbar-loc">—</span>
+                <div class="theme-switcher" role="group" aria-label="Тема оформления">
+                    <button class="th-btn active" onclick="setTheme('auto')" title="Авто по небу"><svg class="ico"><use href="#i-contrast"/></svg></button>
+                    <button class="th-btn" onclick="setTheme('dark')" title="Тёмная"><svg class="ico"><use href="#i-moon"/></svg></button>
+                    <button class="th-btn" onclick="setTheme('light')" title="Светлая"><svg class="ico"><use href="#i-sun"/></svg></button>
+                    <button class="th-btn" onclick="setTheme('beige')" title="Бежевая"><svg class="ico"><use href="#i-leaf"/></svg></button>
+                </div>
+                <button id="install-btn" onclick="installPWA()"><svg class="ico"><use href="#i-download"/></svg> Установить</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ══════ THREE-COLUMN PAGE ══════ -->
+    <div class="page">
+
+        <!-- LEFT: settings -->
+        <aside class="col-left" aria-label="Настройки">
+
+            <div class="sb-label">Ваш город</div>
+            <div class="city-wrap">
+                <input type="text" class="city-input" id="city-input" placeholder="Поиск города..." autocomplete="off"
+                    aria-label="Выбор города" />
+                <div class="autocomplete-list" id="ac-list" role="listbox"></div>
+            </div>
+            <div class="city-hint" id="city-info">Определяем ваш город...</div>
+
+            <div class="sb-divider"></div>
+
+            <div class="sb-label">Метод расчёта</div>
+            <select id="method-select" class="method-select" aria-label="Метод расчёта">
+                <option value="2" selected>ISNA (Сев. Америка)</option>
+                <option value="1">Карачи</option>
+                <option value="3">Лига мира (МКЛ)</option>
+                <option value="4">Умм аль-Кура</option>
+                <option value="5">Египетское управление</option>
+                <option value="14">ДУМР (Россия)</option>
+                <option value="15">Европейский совет (MWL)</option>
+            </select>
+        </aside>
+
+        <!-- CENTER -->
+        <main class="col-center">
+            <h1 class="visually-hidden">Время намаза — расписание молитв на сегодня</h1>
+
+            <!-- Push banner -->
+            <div class="push-banner" id="push-banner" role="alert">
+                <svg class="ico"><use href="#i-bell"/></svg>
+                <div class="push-banner-text"><strong>Напоминание за 5 минут до намаза</strong> — прямо в браузере</div>
+                <button class="push-ok" onclick="requestPush()">Включить</button>
+                <button class="push-close" onclick="dismissPushBanner()"
+                    aria-label="Закрыть">×</button>
+            </div>
+
+            <!-- Date / location strip -->
+            <div class="date-strip">
+                <div class="ds-loc">
+                    <svg class="ico" aria-hidden="true"><use href="#i-pin"/></svg>
+                    <span id="loc-city">Загрузка...</span>
+                    <span class="loc-badge" id="loc-method"></span>
+                </div>
+                <div class="ds-dates">
+                    <span id="loc-date"></span>
+                    <span class="ds-sep">·</span>
+                    <span id="hijri-date">—</span>
+                    <!-- Mobile-only city picker chip -->
+                    <button class="city-chip" id="city-chip" aria-label="Выбрать другой город">Сменить город</button>
+                </div>
+            </div>
+
+            <!-- Mobile city picker modal -->
+            <div class="city-modal" id="city-modal">
+                <div class="city-modal-backdrop" id="city-modal-backdrop"></div>
+                <div class="city-modal-panel">
+                    <div class="city-modal-header">
+                        <span>Выберите город</span>
+                        <button class="city-modal-close" id="city-modal-close" aria-label="Закрыть">×</button>
+                    </div>
+                    <input type="text" class="city-modal-input" id="modal-city-input" placeholder="Поиск города..."
+                        autocomplete="off" aria-label="Поиск города" />
+                    <div class="city-modal-ac" id="modal-ac-list" role="listbox"></div>
+                </div>
+            </div>
+
+            <!-- Hero -->
+            <div class="hero-row">
+                <div class="hero-card" id="hero-card">
+                    <div class="hero-stars" id="hero-stars" aria-hidden="true"></div>
+                    <div class="hero-eyebrow">Следующий намаз</div>
+                    <div class="hero-name" id="next-name">—</div>
+                    <div class="hero-meta">
+                        <span id="next-at"></span>
+                        <span class="hero-sep">·</span>
+                        <span id="hero-remaining">—</span>
+                    </div>
+                </div>
+
+                <div class="ring-card">
+                    <div class="cd-label">Осталось</div>
+                    <div class="cd-ring-wrap">
+                        <svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <circle cx="70" cy="70" r="60" fill="none" stroke="var(--border-med)" stroke-width="8" />
+                            <circle id="ring" cx="70" cy="70" r="60" fill="none" stroke="var(--green)" stroke-width="8"
+                                stroke-linecap="round" stroke-dasharray="376.99" stroke-dashoffset="376.99"
+                                transform="rotate(-90 70 70)" />
+                        </svg>
+                        <div class="cd-value" id="countdown">--:--</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Horizontal prayer timeline -->
+            <div class="timeline">
+                <div class="timeline-track" id="timeline-track">
+                    <!-- filled by JS -->
+                </div>
+            </div>
+
+            <!-- Widgets -->
+            <div class="widgets-row">
+                <div class="widget-card" id="qibla-widget" style="cursor:default;">
+                    <span class="widget-label">Кибла</span>
+                    <canvas id="qibla-canvas" width="120" height="120" style="display:block;margin:8px auto 4px;"
+                        aria-label="Компас направления киблы"></canvas>
+                    <span class="widget-value" id="qibla-value" style="display:block;text-align:center;">—</span>
+                    <span class="widget-sub" id="qibla-sub" style="display:block;text-align:center;"></span>
+                    <button class="qibla-ar-btn" id="qibla-ar-btn"><svg class="ico"><use href="#i-compass"/></svg> Наведи телефон</button>
+                </div>
+                <div class="widget-card">
+                    <span class="widget-icon"><svg class="ico"><use href="#i-handshake"/></svg></span>
+                    <span class="widget-label">До джумы</span>
+                    <span class="widget-value" id="jumuah-value">—</span>
+                    <span class="widget-sub" id="jumuah-sub"></span>
+                </div>
+                <div class="widget-card">
+                    <span class="widget-icon"><svg class="ico"><use href="#i-moon"/></svg></span>
+                    <span class="widget-label">До рамадана</span>
+                    <span class="widget-value" id="ramadan-value">—</span>
+                    <span class="widget-sub" id="ramadan-sub"></span>
+                </div>
+            </div>
+
+        </main>
+
+        <!-- RIGHT: Spiritual reminder -->
+        <aside class="col-right" aria-label="Духовный контент дня">
+            <div class="content-card">
+                <div class="spiritual-heading">Духовное напоминание дня</div>
+
+                <div class="ayah-translation" id="ayah-tr"></div>
+                <div class="content-source" id="ayah-ref"></div>
+                <button class="share-btn" id="sh-ayah" onclick="shareContent('ayah')"><svg class="ico"><use href="#i-share"/></svg> Поделиться карточкой</button>
+
+                <div class="spiritual-divider"></div>
+
+                <div class="hadith-text" id="hadith-text">Загрузка...</div>
+                <div class="content-source" id="hadith-source"></div>
+                <button class="share-btn" id="sh-hadith" onclick="shareContent('hadith')"><svg class="ico"><use href="#i-share"/></svg> Поделиться карточкой</button>
+            </div>
+        </aside>
+
+    </div><!-- /.page -->
+
+    <!-- ══════ FOOTER ══════ -->
+    <footer>
+        <div class="site-footer">
+            <div>
+                <div class="ft-head">Навигация</div>
+                <a class="ft-link" href="../">Время намаза</a>
+                <button class="ft-link" onclick="showToast('В разработке')">Календарь молитв</button>
+                <button class="ft-link" onclick="showToast('В разработке')">Трекер намазов</button>
+                <button class="ft-link" onclick="focusWidget('qibla-widget')">Направление киблы</button>
+                <button class="ft-link" onclick="showToast('В разработке')">Обратная связь</button>
+            </div>
+            <div>
+                <div class="ft-head">Города</div>
+                <a class="ft-link" href="./">Время намаза Москва</a>
+                <a class="ft-link" href="../sankt-peterburg/">Время намаза СПб</a>
+                <a class="ft-link" href="../kazan/">Время намаза Казань</a>
+                <a class="ft-link" href="../grozny/">Время намаза Грозный</a>
+                <a class="ft-link" href="../mahachkala/">Время намаза Махачкала</a>
+                <a class="ft-link" href="../ufa/">Время намаза Уфа</a>
+            <div class="ft-head">Информация</div>
+                <button class="ft-link" onclick="showToast('В разработке')">О сайте</button>
+                <button class="ft-link" onclick="showToast('В разработке')">Методы расчёта</button>
+                <button class="ft-link" onclick="showToast('В разработке')">Политика конфиденциальности</button>
+                <button class="ft-link" onclick="showToast('В разработке')">Пользовательское соглашение</button>
+            </div>
+
+            <div class="footer-legal">
+                <strong>Правовая информация.</strong>
+                Настоящий сайт носит исключительно информационный характер. Время намаза рассчитывается на основе
+                астрономических данных и может незначительно отличаться в зависимости от метода расчёта и локального
+                мазхаба.
+                Пожалуйста, сверяйтесь с местной мечетью.<br />
+                Сайт не является религиозной организацией и не осуществляет деятельность, подпадающую под действие
+                Федерального закона от 26.09.1997 № 125-ФЗ «О свободе совести и о религиозных объединениях».
+                Деятельность
+                сайта осуществляется в соответствии с законодательством Российской Федерации. Использование сайта
+                означает
+                согласие с <a href="#" onclick="return false">Политикой конфиденциальности</a> и <a href="#"
+                    onclick="return false">Пользовательским соглашением</a>.<br />
+                Данные о временах намаза: <a href="https://aladhan.com" target="_blank" rel="noopener">Aladhan.com</a>.
+                Геолокация по IP: <a href="https://ipwho.is" target="_blank" rel="noopener">ipwho.is</a>. Поиск городов:
+                <a href="https://nominatim.openstreetmap.org" target="_blank" rel="noopener">Nominatim /
+                    OpenStreetMap</a>. ©
+                2026 ВремяНамаза.рф — все права защищены.
+            </div>
+        </div>
+    </footer>
+
+    <div class="toast" id="toast" aria-live="polite"></div>
+
+    <script>
+    /* SEO city override — Москва: предзаполняем store до init() */
+    try {
+        localStorage.setItem('saved_lat', '55.7558');
+        localStorage.setItem('saved_lon', '37.6173');
+        localStorage.setItem('saved_city', 'Москва');
+    } catch(e) {}
+    </script>    <script>
+        /* ══ DATA ══ */
+        const PRAYERS = [
+            { key: 'Fajr', ru: 'Фаджр', icon: 'i-moon' },
+            { key: 'Sunrise', ru: 'Шурук', icon: 'i-sunrise', isSunrise: true },
+            { key: 'Dhuhr', ru: 'Зухр', icon: 'i-sun' },
+            { key: 'Asr', ru: 'Аср', icon: 'i-cloud-sun' },
+            { key: 'Maghrib', ru: 'Магриб', icon: 'i-sunset' },
+            { key: 'Isha', ru: 'Иша', icon: 'i-moon' },
+        ];
+
+        const HADITHS = [
+            { text: '«Никто из вас не уверует по-настоящему, пока не пожелает брату своему того же, чего желает самому себе.»', source: 'Бухари, №13 · Муслим, №45 — сахих' },
+            { text: '«Поистине, дела оцениваются по намерениям, и каждый получит то, что намеревался.»', source: 'Бухари, №1 · Муслим, №1907 — сахих' },
+            { text: '«Улыбка, которую ты даришь брату своему — это садака.»', source: 'Тирмизи, №1956 — хасан' },
+            { text: '«Лучший из вас тот, чьи нравы наиболее хороши.»', source: 'Бухари, №3559 — сахих' },
+            { text: '«Кто верит в Аллаха и Судный день — пусть говорит благое или молчит.»', source: 'Бухари, №6475 · Муслим, №47 — сахих' },
+            { text: '«Мощный не тот, кто побеждает в борьбе, а тот, кто владеет собой в гневе.»', source: 'Бухари, №6114 · Муслим, №2609 — сахих' },
+            { text: '«Уберите с дороги вред — это садака.»', source: 'Муслим, №1009 — сахих' },
+        ];
+        const AYAHS = [
+            { ar: 'وَاسْتَعِينُوا بِالصَّبْرِ وَالصَّلَاةِ', tr: '«Прибегайте к помощи терпения и молитвы. Воистину, Аллах — с терпеливыми.»', ref: 'Аль-Бакара (2:153)' },
+            { ar: 'إِنَّ مَعَ الْعُسْرِ يُسْرًا', tr: '«Воистину, за каждой тягостью наступает облегчение.»', ref: 'Аш-Шарх (94:6)' },
+            { ar: 'وَعَسَىٰ أَن تَكْرَهُوا شَيْئًا وَهُوَ خَيْرٌ لَّكُمْ', tr: '«Быть может, вам не нравится то, что является благом для вас.»', ref: 'Аль-Бакара (2:216)' },
+            { ar: 'إِنَّ اللَّهَ مَعَ الصَّابِرِينَ', tr: '«Воистину, Аллах — с терпеливыми.»', ref: 'Аль-Бакара (2:153)' },
+            { ar: 'وَمَن يَتَّقِ اللَّهَ يَجْعَل لَّهُ مَخْرَجًا', tr: '«Тому, кто боится Аллаха, Он укажет выход.»', ref: 'Ат-Талак (65:2)' },
+            { ar: 'فَاذْكُرُونِي أَذْكُرْكُمْ', tr: '«Поминайте Меня, и Я буду помнить о вас.»', ref: 'Аль-Бакара (2:152)' },
+            { ar: 'أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ', tr: '«Воистину, в поминании Аллаха успокаиваются сердца.»', ref: "Ар-Ра'д (13:28)" },
+        ];
+
+        /* Hijri month names (РУ) */
+        const HIJRI_MONTHS_RU = [
+            'Мухаррам', 'Сафар', 'Раби-уль-авваль', 'Раби-уль-ахир', 'Джумада-ль-уля', 'Джумада-ль-ахира',
+            'Раджаб', 'Шаабан', 'Рамадан', 'Шавваль', 'Зуль-каада', 'Зуль-хиджа'
+        ];
+
+        /* "Sky" gradients for the hero card — reflect the time of day of the upcoming prayer */
+        const HERO_GRADIENTS = {
+            Fajr: 'linear-gradient(135deg, #1c2541 0%, #3e4a72 45%, #c08a6a 100%)',
+            Dhuhr: 'linear-gradient(135deg, #2c5f7c 0%, #4f93b3 55%, #9fd3c7 100%)',
+            Asr: 'linear-gradient(135deg, #3c5a45 0%, #7c8f5a 55%, #d8b25c 100%)',
+            Maghrib: 'linear-gradient(135deg, #2c1f3d 0%, #7a3b4e 50%, #e08c4c 100%)',
+            Isha: 'linear-gradient(135deg, #0c1320 0%, #1c2d3a 55%, #2d6a4f 100%)',
+        };
+
+        /* ══ STATE ══ */
+        const S = { lat: null, lon: null, city: '', times: null, hijri: null, tickId: null };
+
+        /* Safe localStorage wrappers — in private mode Safari / blocked storage
+           the native API throws, which would crash the whole init. */
+        const store = {
+            _ok: (() => { try { return !!window.localStorage; } catch (e) { return false; } })(),
+            get(k) { try { return this._ok ? localStorage.getItem(k) : null; } catch (e) { return null; } },
+            set(k, v) { try { if (this._ok) localStorage.setItem(k, v); } catch (e) { } },
+        };
+
+        /* Inline SVG icon helper — emits an <svg class="ico"> that references
+           a <symbol> from the sprite defined at the top of <body>. */
+        function icon(name, extraClass) {
+            const cls = extraClass ? `ico ${extraClass}` : 'ico';
+            return `<svg class="${cls}"><use href="#${name}"/></svg>`;
+        }
+
+        /* ══ THEME ══ */
+        const THEME_COLORS = { dark: '#141412', light: '#ffffff', beige: '#ede8dd', auto: '#141412' };
+        const THEME_ORDER = ['auto', 'dark', 'light', 'beige'];
+        let _autoThemeTimer = null;
+
+        /* Определяет «ночное» ли сейчас небо по реальным временам намаза.
+           Ночь = от Магриба (закат) до Фаджра (рассвет). */
+        function isNightByPrayer() {
+            if (!S.times) return null;
+            const now = new Date();
+            const nowMin = now.getHours() * 60 + now.getMinutes();
+            const maghrib = toMin(S.times.Maghrib);
+            const fajr = toMin(S.times.Fajr);
+            // Магриб и Фаджр одинакового дня: ночь «переходит» через полночь
+            // → между Магрибом и Фаджром (если Магриб > Фаджр в минутах — норм. случай)
+            const night = nowMin >= maghrib || nowMin < fajr;
+            return night;
+        }
+
+        /* Возвращает тему для авто-режима: dark ночью (по Магриб→Фаджр), light днём. */
+        function autoTheme() {
+            const night = isNightByPrayer();
+            if (night === null) return 'dark'; // нет данных — тёмная по умолчанию
+            return night ? 'dark' : 'light';
+        }
+
+        /* Применяет авто-тему без записи в store (store хранит 'auto'). */
+        function applyAutoTheme() {
+            if (store.get('theme') !== 'auto') return;
+            const effective = autoTheme();
+            if (document.body.getAttribute('data-theme') !== effective) {
+                document.body.setAttribute('data-theme', effective);
+                const meta = document.getElementById('meta-theme-color');
+                if (meta) meta.setAttribute('content', THEME_COLORS[effective] || THEME_COLORS.dark);
+                const q = parseFloat(document.getElementById('qibla-value').textContent);
+                if (!isNaN(q)) drawQiblaCompass(q);
+            }
+        }
+
+        /* Запускает периодическую проверку авто-темы (раз в минуту). */
+        function startAutoThemeTimer() {
+            if (_autoThemeTimer) clearInterval(_autoThemeTimer);
+            applyAutoTheme();
+            _autoThemeTimer = setInterval(applyAutoTheme, 60 * 1000);
+        }
+
+        function setTheme(t) {
+            document.querySelectorAll('.th-btn').forEach((b, i) => {
+                b.classList.toggle('active', THEME_ORDER[i] === t);
+            });
+            store.set('theme', t);
+            if (t === 'auto') {
+                startAutoThemeTimer();
+            } else {
+                if (_autoThemeTimer) { clearInterval(_autoThemeTimer); _autoThemeTimer = null; }
+                document.body.setAttribute('data-theme', t);
+                const meta = document.getElementById('meta-theme-color');
+                if (meta) meta.setAttribute('content', THEME_COLORS[t] || THEME_COLORS.dark);
+                const q = parseFloat(document.getElementById('qibla-value').textContent);
+                if (!isNaN(q)) drawQiblaCompass(q);
+            }
+        }
+        (function () {
+            const saved = store.get('theme') || 'auto';
+            setTheme(saved);
+        })();
+
+        /* ══ TOAST ══ */
+        function showToast(msg) {
+            const t = document.getElementById('toast');
+            t.innerHTML = msg;
+            t.classList.add('show');
+            clearTimeout(t._tid);
+            t._tid = setTimeout(() => t.classList.remove('show'), 2500);
+        }
+
+        /* ══ SCROLL-TO / HIGHLIGHT A WIDGET ══ */
+        function focusWidget(id) {
+            const el = document.getElementById(id);
+            if (!el) return;
+            const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            el.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'center' });
+            el.classList.remove('flash');
+            requestAnimationFrame(() => el.classList.add('flash'));
+            setTimeout(() => el.classList.remove('flash'), 1300);
+        }
+
+        /* ══ DAILY CONTENT ══ */
+        function setDailyContent() {
+            const d = new Date().getDay();
+            const h = HADITHS[d % HADITHS.length];
+            const a = AYAHS[d % AYAHS.length];
+            document.getElementById('hadith-text').textContent = h.text;
+            document.getElementById('hadith-source').innerHTML = icon('i-book') + ' ' + h.source;
+            document.getElementById('ayah-tr').textContent = a.tr;
+            document.getElementById('ayah-ref').innerHTML = icon('i-book') + ' ' + a.ref;
+        }
+
+        /* ══ SHARE (branded PNG card via canvas) ══ */
+        async function shareContent(type) {
+            const btnId = 'sh-' + type;
+            const btn = document.getElementById(btnId);
+            const orig = btn.innerHTML;
+            btn.textContent = 'Генерация...';
+            btn.disabled = true;
+
+            // Gather content
+            const data = type === 'hadith'
+                ? {
+                    body: document.getElementById('hadith-text').textContent,
+                    source: document.getElementById('hadith-source').textContent.trim(),
+                    eyebrow: 'Хадис дня'
+                }
+                : {
+                    body: document.getElementById('ayah-tr').textContent,
+                    source: document.getElementById('ayah-ref').textContent.trim(),
+                    eyebrow: 'Аят дня'
+                };
+
+            const text = type === 'hadith'
+                ? data.body + '\n— ' + data.source
+                : data.body + '\n' + data.source;
+
+            try {
+                // 1. Ensure web fonts (Amiri/Fraunces/Inter) are loaded so the
+                //    canvas renders with the correct typography, not fallback serif.
+                if (document.fonts && document.fonts.ready) {
+                    await document.fonts.ready;
+                    if (type === 'ayah') {
+                        try { await document.fonts.load('40px "Amiri"'); } catch (e) { }
+                    }
+                    try { await document.fonts.load('600 28px "Fraunces"'); } catch (e) { }
+                }
+                // 2. Generate branded card
+                const blob = await renderShareCard(data, type);
+                const file = new File([blob], `namaz-${type}.png`, { type: 'image/png' });
+                const nav = navigator;
+
+                // 2. Try Web Share API with file (mobile / Telegram / WhatsApp)
+                if (nav.canShare && nav.canShare({ files: [file] })) {
+                    await nav.share({
+                        files: [file],
+                        text,
+                        title: 'Время намаза'
+                    });
+                    resetBtn();
+                    return;
+                }
+                // 3. Fallback: download PNG + copy text
+                downloadBlob(blob, `namaz-${type}.png`);
+                try {
+                    await navigator.clipboard.writeText(text);
+                    btn.innerHTML = icon('i-check') + ' Скачано + скопировано';
+                } catch (e) {
+                    btn.innerHTML = icon('i-check') + ' Карточка скачана';
+                }
+                btn.classList.add('copied');
+                setTimeout(resetBtn, 2500);
+            } catch (e) {
+                if (e && e.name !== 'AbortError') {
+                    showToast('Не удалось создать карточку');
+                }
+                resetBtn();
+            }
+
+            function resetBtn() {
+                btn.innerHTML = orig;
+                btn.classList.remove('copied');
+                btn.disabled = false;
+            }
+        }
+
+        function downloadBlob(blob, filename) {
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+            setTimeout(() => URL.revokeObjectURL(url), 1000);
+        }
+
+        /* Wrap text for canvas drawing; returns array of lines respecting maxWidth. */
+        function wrapText(ctx, text, maxWidth) {
+            const words = text.split(/\s+/);
+            const lines = [];
+            let line = '';
+            for (const w of words) {
+                const test = line ? line + ' ' + w : w;
+                if (ctx.measureText(test).width > maxWidth && line) {
+                    lines.push(line);
+                    line = w;
+                } else {
+                    line = test;
+                }
+            }
+            if (line) lines.push(line);
+            return lines;
+        }
+
+        /* Render a branded 1080×1350 (4:5 Stories) card. Returns a Promise<Blob>. */
+        function renderShareCard(data, type) {
+            const W = 1080, H = 1350;
+            const canvas = document.createElement('canvas');
+            canvas.width = W;
+            canvas.height = H;
+            const ctx = canvas.getContext('2d');
+            const theme = document.body.getAttribute('data-theme');
+
+            // Brand palette
+            const green = '#2d6a4f';
+            const greenDark = '#1b4332';
+            const cream = '#f7f4ec';
+            const dark = '#0f0f0d';
+            const isAyah = type === 'ayah';
+
+            // ── Background: deep green gradient ──
+            const bg = ctx.createLinearGradient(0, 0, W, H);
+            bg.addColorStop(0, greenDark);
+            bg.addColorStop(1, green);
+            ctx.fillStyle = bg;
+            ctx.fillRect(0, 0, W, H);
+
+            // subtle decorative crescent top-right
+            ctx.save();
+            ctx.globalAlpha = 0.08;
+            ctx.fillStyle = cream;
+            ctx.beginPath();
+            ctx.arc(W - 140, 160, 120, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.beginPath();
+            ctx.arc(W - 100, 140, 120, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.restore();
+
+            // ── Inner card panel ──
+            const pad = 70;
+            const panelX = pad, panelY = pad, panelW = W - pad * 2, panelH = H - pad * 2;
+            ctx.fillStyle = cream;
+            roundRect(ctx, panelX, panelY, panelW, panelH, 32);
+            ctx.fill();
+
+            // ── Eyebrow (Аят дня / Хадис дня) ──
+            ctx.fillStyle = green;
+            ctx.font = '600 26px Inter, system-ui, sans-serif';
+            ctx.textAlign = 'left';
+            ctx.textBaseline = 'alphabetic';
+            ctx.fillText(data.eyebrow.toUpperCase(), panelX + 50, panelY + 70);
+
+            // accent line under eyebrow
+            ctx.fillStyle = green;
+            ctx.fillRect(panelX + 50, panelY + 86, 48, 3);
+
+            const contentTop = panelY + 150;
+            const contentW = panelW - 100;
+
+            if (isAyah) {
+                // Ayah text (translation only — no Arabic)
+                ctx.fillStyle = dark;
+                ctx.font = '500 32px Inter, system-ui, sans-serif';
+                const lines = wrapText(ctx, data.body, contentW - 40);
+                let y = contentTop;
+                for (const ln of lines) {
+                    ctx.fillText(ln, panelX + 50, y);
+                    y += 48;
+                }
+                y += 30;
+            } else {
+                // Hadith body
+                ctx.fillStyle = dark;
+                ctx.font = '500 32px Inter, system-ui, sans-serif';
+                const lines = wrapText(ctx, data.body, contentW - 40);
+                let y = contentTop;
+                for (const ln of lines) {
+                    ctx.fillText(ln, panelX + 50, y);
+                    y += 48;
+                }
+                y += 30;
+            }
+
+            // ── Source (bottom area) ──
+            ctx.fillStyle = green;
+            ctx.font = 'italic 600 28px "Fraunces", Georgia, serif';
+            const srcLines = wrapText(ctx, '— ' + data.source, contentW - 40);
+            let srcY = H - pad - 180;
+            for (const ln of srcLines) {
+                ctx.fillText(ln, panelX + 50, srcY);
+                srcY += 40;
+            }
+
+            // ── Brand footer ──
+            ctx.fillStyle = 'rgba(45,106,79,0.7)';
+            ctx.font = '600 22px Inter, system-ui, sans-serif';
+            ctx.textAlign = 'center';
+            ctx.fillText('ВРЕМЯ НАМАЗА', W / 2, H - pad - 50);
+            ctx.fillStyle = 'rgba(45,106,79,0.4)';
+            ctx.font = '400 18px Inter, system-ui, sans-serif';
+            ctx.fillText('Точное время молитв для вашего города', W / 2, H - pad - 22);
+
+            return new Promise(resolve => canvas.toBlob(resolve, 'image/png', 0.92));
+        }
+
+        /* Word-wrap for Arabic text (RTL). ctx.direction should be set by caller. */
+        function wrapTextArabic(ctx, text, maxWidth) {
+            // Arabic wraps on spaces too; reuse generic wrapper
+            const words = text.split(/\s+/);
+            const lines = [];
+            let line = '';
+            for (const w of words) {
+                const test = line ? line + ' ' + w : w;
+                if (ctx.measureText(test).width > maxWidth && line) {
+                    lines.push(line);
+                    line = w;
+                } else {
+                    line = test;
+                }
+            }
+            if (line) lines.push(line);
+            return lines;
+        }
+
+        function roundRect(ctx, x, y, w, h, r) {
+            ctx.beginPath();
+            ctx.moveTo(x + r, y);
+            ctx.arcTo(x + w, y, x + w, y + h, r);
+            ctx.arcTo(x + w, y + h, x, y + h, r);
+            ctx.arcTo(x, y + h, x, y, r);
+            ctx.arcTo(x, y, x + w, y, r);
+            ctx.closePath();
+        }
+
+        /* ══ UTILS ══ */
+        function toMin(str) {
+            if (!str) return 9999;
+            const [h, m] = str.split(':').map(Number);
+            return h * 60 + m;
+        }
+        function pad(n) { return String(n).padStart(2, '0'); }
+
+        /* Russian plural helper: pluralRu(5, 'час','часа','часов') → 'часов' */
+        function pluralRu(n, one, few, many) {
+            const mod10 = n % 10, mod100 = n % 100;
+            if (mod100 >= 11 && mod100 <= 14) return many;
+            if (mod10 === 1) return one;
+            if (mod10 >= 2 && mod10 <= 4) return few;
+            return many;
+        }
+        function pluralDays(n) { return pluralRu(n, 'день', 'дня', 'дней'); }
+
+        /* ══ QIBLA DIRECTION ══ */
+        let _qiblaDeg = null; // cached qibla direction for AR mode
+
+        function qiblaDirection(lat, lon) {
+            const toRad = d => d * Math.PI / 180;
+            const toDeg = r => r * 180 / Math.PI;
+            const kLat = toRad(21.4225), kLon = toRad(39.8262); // Kaaba, Mecca
+            const phi1 = toRad(lat), lam1 = toRad(lon);
+            const dLon = kLon - lam1;
+            const y = Math.sin(dLon);
+            const x = Math.cos(phi1) * Math.tan(kLat) - Math.sin(phi1) * Math.cos(dLon);
+            let theta = toDeg(Math.atan2(y, x));
+            return (theta + 360) % 360;
+        }
+        function compassPoint(deg) {
+            const pts = ['С', 'СВ', 'В', 'ЮВ', 'Ю', 'ЮЗ', 'З', 'СЗ'];
+            return pts[Math.round(deg / 45) % 8];
+        }
+
+        /**
+         * @param {number} deg       — qibla bearing from north (0–360)
+         * @param {number|null} phoneHeading — device heading from north (0–360), null for static mode
+         */
+        function drawQiblaCompass(deg, phoneHeading) {
+            const canvas = document.getElementById('qibla-canvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const W = 120, H = 120, cx = 60, cy = 60, R = 54;
+
+            const theme = document.body.getAttribute('data-theme');
+            const isDark = theme !== 'light';
+            const colBg = theme === 'dark' ? '#1c1c19' : theme === 'beige' ? '#faf6ef' : '#f5f5f2';
+            const colRing = isDark ? 'rgba(255,255,255,0.10)' : 'rgba(0,0,0,0.09)';
+            const colTick = isDark ? 'rgba(255,255,255,0.18)' : 'rgba(0,0,0,0.15)';
+            const colLabel = isDark ? '#a0a09a' : '#5e5e5a';
+            const colNeedle = '#2d6a4f';
+            const colNeedleTail = isDark ? 'rgba(255,255,255,0.18)' : 'rgba(0,0,0,0.15)';
+            const colDot = isDark ? '#e8e6df' : '#1a1a18';
+
+            // In AR mode the entire compass rotates opposite to the phone heading,
+            // so "north" on screen corresponds to real north.
+            const arMode = phoneHeading !== null && phoneHeading !== undefined;
+            const headingRad = arMode ? -(phoneHeading * Math.PI / 180) : 0;
+
+            ctx.clearRect(0, 0, W, H);
+
+            ctx.beginPath();
+            ctx.arc(cx, cy, R, 0, Math.PI * 2);
+            ctx.fillStyle = colBg;
+            ctx.fill();
+            ctx.strokeStyle = colRing;
+            ctx.lineWidth = 1.5;
+            ctx.stroke();
+
+            // Cardinal directions — rotate with heading in AR mode
+            const cardinals = [['С', 0], ['В', 90], ['Ю', 180], ['З', 270]];
+            cardinals.forEach(([label, angle]) => {
+                const rad = ((angle - 90) * Math.PI / 180) + headingRad;
+                const x1 = cx + (R - 2) * Math.cos(rad);
+                const y1 = cy + (R - 2) * Math.sin(rad);
+                const x2 = cx + (R - 10) * Math.cos(rad);
+                const y2 = cy + (R - 10) * Math.sin(rad);
+                ctx.beginPath();
+                ctx.moveTo(x1, y1);
+                ctx.lineTo(x2, y2);
+                ctx.strokeStyle = colTick;
+                ctx.lineWidth = 1.5;
+                ctx.stroke();
+                const lx = cx + (R - 20) * Math.cos(rad);
+                const ly = cy + (R - 20) * Math.sin(rad);
+                ctx.fillStyle = colLabel;
+                ctx.font = '500 10px Inter, system-ui, sans-serif';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText(label, lx, ly);
+            });
+
+            // Qibla needle — bearing also shifts with heading in AR mode
+            const needleRad = ((deg - 90) * Math.PI / 180) + headingRad;
+            const tipX = cx + (R - 14) * Math.cos(needleRad);
+            const tipY = cy + (R - 14) * Math.sin(needleRad);
+            const tailX = cx - 22 * Math.cos(needleRad);
+            const tailY = cy - 22 * Math.sin(needleRad);
+
+            ctx.beginPath();
+            ctx.moveTo(tailX, tailY);
+            ctx.lineTo(tipX, tipY);
+            ctx.strokeStyle = colNeedleTail;
+            ctx.lineWidth = 2;
+            ctx.stroke();
+
+            ctx.beginPath();
+            ctx.moveTo(cx, cy);
+            ctx.lineTo(tipX, tipY);
+            ctx.strokeStyle = colNeedle;
+            ctx.lineWidth = 3;
+            ctx.lineCap = 'round';
+            ctx.stroke();
+
+            ctx.fillStyle = colNeedle;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            // Draw a small Kaaba marker (cube with gold band) instead of emoji
+            const ks = 5; // kaaba half-size
+            ctx.fillRect(tipX - ks, tipY - ks, ks * 2, ks * 2);
+            ctx.fillStyle = '#d4a84b'; // gold band
+            ctx.fillRect(tipX - ks, tipY - 1, ks * 2, 2);
+
+            ctx.beginPath();
+            ctx.arc(cx, cy, 4, 0, Math.PI * 2);
+            ctx.fillStyle = colDot;
+            ctx.fill();
+
+            // AR mode indicator
+            if (arMode) {
+                ctx.beginPath();
+                ctx.arc(cx, cy - R + 6, 3, 0, Math.PI * 2);
+                ctx.fillStyle = '#e76f51';
+                ctx.fill();
+            }
+        }
+
+        /* ══ QIBLA AR MODE (DeviceOrientation) ══ */
+        let _arActive = false;
+        function startQiblaAR() {
+            if (_arActive) { stopQiblaAR(); return; }
+            if (!('DeviceOrientationEvent' in window)) {
+                showToast('Ваш браузер не поддерживает датчик ориентации');
+                return;
+            }
+            // iOS 13+ requires explicit permission
+            if (typeof DeviceOrientationEvent.requestPermission === 'function') {
+                DeviceOrientationEvent.requestPermission().then(perm => {
+                    if (perm === 'granted') _attachOrientation();
+                    else showToast('Разрешение на датчик не получено');
+                }).catch(() => showToast('Разрешение на датчик не получено'));
+            } else {
+                _attachOrientation();
+            }
+        }
+
+        function _attachOrientation() {
+            _arActive = true;
+            const btn = document.getElementById('qibla-ar-btn');
+            btn.innerHTML = icon('i-compass') + ' Стоп';
+            btn.classList.add('active');
+            document.getElementById('qibla-sub').textContent = 'Крутите телефон — стрелка покажет киблу';
+
+            function onOrientation(e) {
+                if (!_arActive) return;
+                // webkitCompassHeading (iOS) or alpha (Android, 0 when facing north)
+                let heading = e.webkitCompassHeading;
+                if (heading == null) {
+                    heading = e.alpha != null ? (360 - e.alpha) % 360 : null;
+                }
+                if (heading == null || _qiblaDeg == null) return;
+                drawQiblaCompass(_qiblaDeg, heading);
+            }
+
+            window.addEventListener('deviceorientation', onOrientation, true);
+            // Store listener ref for cleanup
+            btn._onOrientation = onOrientation;
+        }
+
+        function stopQiblaAR() {
+            _arActive = false;
+            const btn = document.getElementById('qibla-ar-btn');
+            if (btn._onOrientation) {
+                window.removeEventListener('deviceorientation', btn._onOrientation, true);
+                btn._onOrientation = null;
+            }
+            btn.innerHTML = icon('i-compass') + ' Наведи телефон';
+            btn.classList.remove('active');
+            document.getElementById('qibla-sub').textContent = '';
+            // Redraw static compass
+            if (_qiblaDeg != null) drawQiblaCompass(_qiblaDeg);
+        }
+
+        document.getElementById('qibla-ar-btn').addEventListener('click', startQiblaAR);
+
+        /* ══ HIJRI HELPERS ══ */
+        function formatHijri(hijri) {
+            if (!hijri) return '—';
+            return `${hijri.day} ${HIJRI_MONTHS_RU[hijri.monthNumber - 1]} ${hijri.year} г.х.`;
+        }
+        function daysUntilHijriMonth(hijri, targetMonth, targetDay = 1) {
+            const curMonth = hijri.monthNumber, curDay = hijri.day;
+            let monthsAhead = targetMonth - curMonth;
+            if (monthsAhead <= 0) monthsAhead += 12;
+            const AVG_MONTH = 29.5306; // mean synodic month, days
+            return Math.max(0, Math.round(monthsAhead * AVG_MONTH - curDay + targetDay));
+        }
+        function daysUntilFriday() {
+            return (5 - new Date().getDay() + 7) % 7;
+        }
+
+        /* ══ HERO GRADIENT ══ */
+        const NIGHT_PRAYERS = new Set(['Isha', 'Fajr']);
+        let _starsRendered = false;
+        function applyHeroGradient(prayerKey) {
+            const grad = HERO_GRADIENTS[prayerKey] || HERO_GRADIENTS.Isha;
+            const card = document.getElementById('hero-card');
+            card.style.backgroundImage =
+                `linear-gradient(var(--scrim), var(--scrim)), ${grad}`;
+
+            // Night prayer → show twinkling stars
+            const isNight = NIGHT_PRAYERS.has(prayerKey);
+            card.classList.toggle('is-night', isNight);
+            if (isNight && !_starsRendered) {
+                _starsRendered = true;
+                renderStars();
+            }
+        }
+
+        /* Generate ~14 randomly placed stars in the hero star layer (once). */
+        function renderStars() {
+            const layer = document.getElementById('hero-stars');
+            if (!layer) return;
+            const frag = document.createDocumentFragment();
+            for (let i = 0; i < 14; i++) {
+                const s = document.createElement('span');
+                s.style.left = (5 + Math.random() * 90) + '%';
+                s.style.top = (8 + Math.random() * 84) + '%';
+                s.style.animationDelay = (Math.random() * 3).toFixed(2) + 's';
+                if (Math.random() < 0.3) s.className = 'lg';
+                frag.appendChild(s);
+            }
+            layer.appendChild(frag);
+        }
+
+        /* ══ PRAYER TIMES + HIJRI DATE API ══ */
+        async function fetchTimes(lat, lon, method) {
+            const now = new Date();
+            const url = `https://api.aladhan.com/v1/timings/${now.getDate()}-${now.getMonth() + 1}-${now.getFullYear()}?latitude=${lat}&longitude=${lon}&method=${method}`;
+            const r = await fetch(url);
+            const j = await r.json();
+            if (j.code === 200) {
+                const t = j.data.timings;
+                const h = j.data.date.hijri;
+                return {
+                    times: {
+                        Fajr: t.Fajr.substring(0, 5),
+                        Sunrise: t.Sunrise.substring(0, 5),
+                        Dhuhr: t.Dhuhr.substring(0, 5),
+                        Asr: t.Asr.substring(0, 5),
+                        Maghrib: t.Maghrib.substring(0, 5),
+                        Isha: t.Isha.substring(0, 5),
+                    },
+                    hijri: {
+                        day: parseInt(h.day, 10),
+                        monthNumber: h.month.number,
+                        year: parseInt(h.year, 10),
+                    },
+                };
+            }
+            return null;
+        }
+
+        /* ══ WIDGETS (qibla, jumuah, ramadan) ══ */
+        function updateWidgets() {
+            if (S.lat != null && S.lon != null) {
+                const q = qiblaDirection(S.lat, S.lon);
+                _qiblaDeg = q;
+                document.getElementById('qibla-value').textContent = `${Math.round(q)}°`;
+                document.getElementById('qibla-sub').textContent = compassPoint(q);
+                drawQiblaCompass(q); // static mode; AR mode redraws itself
+            }
+
+            const dj = daysUntilFriday();
+            document.getElementById('jumuah-value').textContent = dj === 0 ? 'Сегодня' : `${dj} ${pluralDays(dj)}`;
+            document.getElementById('jumuah-sub').textContent = dj === 0 ? 'Сегодня день Джумы' : 'до пятницы';
+
+            if (S.hijri) {
+                if (S.hijri.monthNumber === 9) {
+                    document.getElementById('ramadan-value').textContent = 'Идёт сейчас';
+                    document.getElementById('ramadan-sub').textContent = `${S.hijri.day}-й день месяца`;
+                } else {
+                    const dr = daysUntilHijriMonth(S.hijri, 9);
+                    document.getElementById('ramadan-value').textContent = `${dr} ${pluralDays(dr)}`;
+                    document.getElementById('ramadan-sub').textContent = 'до Рамадана';
+                }
+            }
+        }
+
+        /* ══ TIMELINE ══ */
+        let _timelineAnimated = false; // stagger only on the very first render
+        function renderTimeline(times, nowMin) {
+            const track = document.getElementById('timeline-track');
+            track.innerHTML = '';
+            const animate = !_timelineAnimated;
+            PRAYERS.forEach((p, i) => {
+                const t = times[p.key];
+                const pMin = toMin(t);
+                const isDone = nowMin > pMin;
+                const isActive = !isDone && PRAYERS.filter(x => !x.isSunrise).find(x => toMin(times[x.key]) > nowMin)?.key === p.key;
+                const item = document.createElement('div');
+                item.className = 'tl-item' + (isDone ? ' is-done' : '') + (isActive ? ' is-active' : '') + (p.isSunrise ? ' is-sunrise' : '');
+                // Staggered entrance: ~50ms per item, only on first load.
+                if (animate) item.style.animationDelay = (i * 50) + 'ms';
+                else item.style.animation = 'none';
+                item.innerHTML = `
+                    <span class="tl-name">${p.ru}</span>
+                    <div class="tl-dot">${isActive ? icon('i-play') : (isDone ? icon('i-check') : '')}</div>
+                    <span class="tl-time">${t}</span>
+                `;
+                track.appendChild(item);
+            });
+            if (animate) _timelineAnimated = true;
+        }
+
+        /* ══ TICK (countdown + hero) ══ */
+        let _lastMinute = -1;
+        function tick() {
+            if (!S.times) return;
+            const now = new Date();
+            const nowMin = now.getHours() * 60 + now.getMinutes();
+
+            // Find next prayer (skip Sunrise for "next namaz")
+            const prayersOnly = PRAYERS.filter(p => !p.isSunrise);
+            let next = null;
+            for (const p of prayersOnly) {
+                if (toMin(S.times[p.key]) > nowMin) { next = p; break; }
+            }
+            if (!next) next = prayersOnly[0]; // wrap to Fajr next day
+
+            const nextMin = toMin(S.times[next.key]);
+            let diffMin = nextMin - nowMin;
+            if (diffMin < 0) diffMin += 24 * 60;
+            const diffSec = diffMin * 60 - now.getSeconds();
+
+            // ── LIGHT update (every second): countdown + ring arc only ──
+            const hh = Math.floor(diffSec / 3600);
+            const mm = Math.floor((diffSec % 3600) / 60);
+            const ss = diffSec % 60;
+            const cdStr = hh > 0 ? `${pad(hh)}:${pad(mm)}` : `${pad(mm)}:${pad(ss)}`;
+            document.getElementById('countdown').textContent = cdStr;
+
+            const prayerIdx = prayersOnly.indexOf(next);
+            const prevP = prayersOnly[(prayerIdx - 1 + prayersOnly.length) % prayersOnly.length];
+            const prevMin = toMin(S.times[prevP.key]);
+            let totalSpan = nextMin - prevMin;
+            if (totalSpan <= 0) totalSpan += 24 * 60;
+            let elapsed = nowMin - prevMin;
+            if (elapsed < 0) elapsed += 24 * 60;
+            // smooth ring — account for seconds inside the current minute
+            const elapsedSec = elapsed * 60 + now.getSeconds();
+            const frac = Math.min(elapsedSec / (totalSpan * 60), 1);
+            const circ = 2 * Math.PI * 60; // r=60
+            document.getElementById('ring').setAttribute('stroke-dashoffset', circ * (1 - frac));
+
+            // ── HEAVY update (only when the minute changes): hero, timeline, date ──
+            if (nowMin === _lastMinute) return;
+            _lastMinute = nowMin;
+
+            document.getElementById('next-name').textContent = next.ru;
+            document.getElementById('next-at').textContent = S.times[next.key];
+            const remText = hh > 0
+                ? `через ${hh} ${pluralRu(hh, 'час', 'часа', 'часов')} ${mm > 0 ? mm + ' мин' : ''}`
+                : `через ${mm} ${pluralRu(mm, 'минуту', 'минуты', 'минут')}`;
+            document.getElementById('hero-remaining').textContent = remText;
+            applyHeroGradient(next.key);
+
+            renderTimeline(S.times, nowMin);
+
+            document.getElementById('loc-date').textContent = now.toLocaleDateString('ru-RU', { weekday: 'long', day: 'numeric', month: 'long' });
+        }
+
+        /* ══ LOAD TIMES ══ */
+        async function loadTimes() {
+            const method = document.getElementById('method-select').value;
+            const result = await fetchTimes(S.lat, S.lon, method);
+            if (!result) { showToast('Ошибка загрузки времён намаза'); return; }
+            S.times = result.times;
+            S.hijri = result.hijri;
+            document.getElementById('hijri-date').textContent = formatHijri(S.hijri);
+            updateWidgets();
+            _lastMinute = -1; // force a full re-render on the next tick
+            applyAutoTheme(); // пересчёт «по небу» после появления времён намаза
+            tick();
+            clearInterval(S.tickId);
+            S.tickId = setInterval(tick, 1000);
+        }
+
+        /* ══ CITY / GEO ══ */
+        async function applyCoords(lat, lon, cityName, method) {
+            S.lat = lat; S.lon = lon; S.city = cityName;
+            document.getElementById('loc-city').textContent = cityName;
+            document.getElementById('topbar-loc').textContent = cityName;
+            document.getElementById('city-info').textContent = `${lat.toFixed(2)}° с.ш., ${lon.toFixed(2)}° в.д.`;
+            document.getElementById('city-input').value = cityName;
+            await loadTimes();
+        }
+
+        async function geoByIP() {
+            try {
+                const r = await fetch('https://ipwho.is/?lang=ru&fields=success,latitude,longitude,city');
+                const j = await r.json();
+                if (j.success !== false && j.latitude != null && j.longitude != null) {
+                    const method = document.getElementById('method-select').value;
+                    await applyCoords(j.latitude, j.longitude, j.city || 'Ваш город', method);
+                    document.getElementById('loc-method').textContent = 'IP';
+                } else {
+                    showToast('Не удалось определить город');
+                }
+            } catch (e) { showToast('Не удалось определить город'); }
+        }
+
+        function loadCity(name) {
+            document.getElementById('city-input').value = name;
+            doSearch(name);
+        }
+
+        /* ══ AUTOCOMPLETE / NOMINATIM ══ */
+        let acTimeout = null;
+        async function doSearch(q) {
+            if (q.length < 2) return;
+            try {
+                const r = await fetch(`https://nominatim.openstreetmap.org/search?format=json&limit=6&accept-language=ru&q=${encodeURIComponent(q)}`);
+                const j = await r.json();
+                showAcList(j);
+            } catch (e) { /* silent */ }
+        }
+
+        function showAcList(items) {
+            const list = document.getElementById('ac-list');
+            list.innerHTML = '';
+            if (!items.length) { list.style.display = 'none'; return; }
+            items.forEach((item, idx) => {
+                const d = document.createElement('div');
+                d.className = 'ac-item';
+                d.setAttribute('role', 'option');
+                const name = item.display_name.split(',').slice(0, 3).join(', ');
+                d.textContent = name;
+                d.addEventListener('mousedown', async () => {
+                    list.style.display = 'none';
+                    const method = document.getElementById('method-select').value;
+                    await applyCoords(parseFloat(item.lat), parseFloat(item.lon), name, method);
+                    store.set('saved_lat', item.lat);
+                    store.set('saved_lon', item.lon);
+                    store.set('saved_city', name);
+                });
+                list.appendChild(d);
+            });
+            list.style.display = 'block';
+        }
+
+        document.getElementById('city-input').addEventListener('input', e => {
+            clearTimeout(acTimeout);
+            const v = e.target.value.trim();
+            if (v.length < 2) { document.getElementById('ac-list').style.display = 'none'; return; }
+            acTimeout = setTimeout(() => doSearch(v), 300);
+        });
+        document.getElementById('city-input').addEventListener('blur', () => {
+            setTimeout(() => { document.getElementById('ac-list').style.display = 'none'; }, 150);
+        });
+        document.addEventListener('keydown', e => {
+            const list = document.getElementById('ac-list');
+            if (list.style.display === 'none') return;
+            const items = list.querySelectorAll('.ac-item');
+            let focused = list.querySelector('.ac-item.focused');
+            if (e.key === 'ArrowDown') {
+                e.preventDefault();
+                const next = focused ? focused.nextElementSibling : items[0];
+                if (focused) focused.classList.remove('focused');
+                if (next) next.classList.add('focused');
+            } else if (e.key === 'ArrowUp') {
+                e.preventDefault();
+                const prev = focused ? focused.previousElementSibling : items[items.length - 1];
+                if (focused) focused.classList.remove('focused');
+                if (prev) prev.classList.add('focused');
+            } else if (e.key === 'Enter' && focused) {
+                focused.dispatchEvent(new MouseEvent('mousedown'));
+            } else if (e.key === 'Escape') {
+                list.style.display = 'none';
+            }
+        });
+
+        document.getElementById('method-select').addEventListener('change', () => {
+            if (S.lat != null) loadTimes();
+        });
+
+        /* ══ MOBILE CITY PICKER MODAL ══ */
+        (function () {
+            const modal = document.getElementById('city-modal');
+            const backdrop = document.getElementById('city-modal-backdrop');
+            const closeBtn = document.getElementById('city-modal-close');
+            const chip = document.getElementById('city-chip');
+            const modalInput = document.getElementById('modal-city-input');
+            const modalAcList = document.getElementById('modal-ac-list');
+            let modalTimeout = null;
+
+            function openModal() {
+                modal.classList.add('open');
+                modalInput.value = '';
+                modalAcList.innerHTML = '';
+                setTimeout(() => modalInput.focus(), 100);
+            }
+
+            function closeModal() {
+                modal.classList.remove('open');
+                modalInput.value = '';
+                modalAcList.innerHTML = '';
+            }
+
+            chip.addEventListener('click', openModal);
+            backdrop.addEventListener('click', closeModal);
+            closeBtn.addEventListener('click', closeModal);
+            document.addEventListener('keydown', e => {
+                if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
+            });
+
+            modalInput.addEventListener('input', e => {
+                clearTimeout(modalTimeout);
+                const v = e.target.value.trim();
+                if (v.length < 2) { modalAcList.innerHTML = ''; return; }
+                modalTimeout = setTimeout(async () => {
+                    try {
+                        const r = await fetch(`https://nominatim.openstreetmap.org/search?format=json&limit=6&accept-language=ru&q=${encodeURIComponent(v)}`);
+                        const j = await r.json();
+                        modalAcList.innerHTML = '';
+                        if (!j.length) return;
+                        j.forEach(item => {
+                            const d = document.createElement('div');
+                            d.className = 'ac-item';
+                            d.setAttribute('role', 'option');
+                            const name = item.display_name.split(',').slice(0, 3).join(', ');
+                            d.textContent = name;
+                            d.addEventListener('click', async () => {
+                                closeModal();
+                                const method = document.getElementById('method-select').value;
+                                await applyCoords(parseFloat(item.lat), parseFloat(item.lon), name, method);
+                                store.set('saved_lat', item.lat);
+                                store.set('saved_lon', item.lon);
+                                store.set('saved_city', name);
+                            });
+                            modalAcList.appendChild(d);
+                        });
+                    } catch (e) { /* silent */ }
+                }, 300);
+            });
+        })();
+
+        /* ══ PUSH NOTIFICATIONS ══ */
+        let _pushOffered = false; // guard: offer the banner only once per session
+        /**
+         * Try to show the push banner. Triggered by engagement signals instead
+         * of a blind 3 s timer — a user who dwells / changes theme / searches
+         * a city is signalling interest, which converts far better.
+         */
+        function maybeShowPushBanner(reason) {
+            if (_pushOffered) return;
+            // Only browsers that actually support notifications
+            if (!('Notification' in window)) return;
+            // Don't pester users who already decided
+            if (Notification.permission !== 'default') return;
+            // Respect a recent dismissal (same calendar day)
+            const today = new Date().toISOString().slice(0, 10);
+            if (store.get('push_dismissed') === today) return;
+
+            _pushOffered = true;
+            document.getElementById('push-banner').classList.add('visible');
+        }
+
+        async function requestPush() {
+            if (!('Notification' in window)) { showToast('Уведомления не поддерживаются'); return; }
+            const perm = await Notification.requestPermission();
+            if (perm === 'granted') {
+                document.getElementById('push-banner').classList.remove('visible');
+                showToast(icon('i-check') + ' Уведомления включены');
+                schedulePushReminders();
+            } else {
+                showToast('Доступ к уведомлениям запрещён');
+            }
+        }
+
+        /* Engagement-based push triggers: dwell time, theme switch, city search. */
+        function dismissPushBanner() {
+            document.getElementById('push-banner').classList.remove('visible');
+            // Remember dismissal for today so we don't nag again this session.
+            store.set('push_dismissed', new Date().toISOString().slice(0, 10));
+        }
+
+        function registerPushTriggers() {
+            // Trigger 1 — dwell: 5 s on page means this isn't a bounce.
+            const dwellTimer = setTimeout(() => maybeShowPushBanner('dwell'), 5000);
+
+            // Trigger 2 — theme switch: explicit personalisation = high interest.
+            document.querySelectorAll('.th-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    clearTimeout(dwellTimer);
+                    maybeShowPushBanner('theme');
+                }, { once: true });
+            });
+
+            // Trigger 3 — city search (sidebar input + mobile modal): user is
+            // actively configuring the app for themselves.
+            const cityInput = document.getElementById('city-input');
+            const modalInput = document.getElementById('modal-city-input');
+            [cityInput, modalInput].forEach(el => {
+                if (!el) return;
+                el.addEventListener('focus', () => {
+                    clearTimeout(dwellTimer);
+                    maybeShowPushBanner('city');
+                }, { once: true });
+            });
+
+            // Geo buttons (GPS / IP) also count as engagement.
+            ['gps-btn', 'ip-btn'].forEach(id => {
+                const b = document.getElementById(id);
+                if (b) b.addEventListener('click', () => {
+                    clearTimeout(dwellTimer);
+                    maybeShowPushBanner('geo');
+                }, { once: true });
+            });
+        }
+
+        function schedulePushReminders() {
+            if (!S.times) return;
+            const now = new Date();
+            PRAYERS.filter(p => !p.isSunrise).forEach(p => {
+                const [h, m] = S.times[p.key].split(':').map(Number);
+                const pTime = new Date(now);
+                pTime.setHours(h, m - 5, 0, 0); // 5 min before
+                const diff = pTime - now;
+                if (diff > 0) {
+                    setTimeout(() => {
+                        new Notification(`Намаз через 5 минут — ${p.ru}`, {
+                            body: `Время ${p.ru}: ${S.times[p.key]}`,
+                            icon: './icon-192.png',
+                            tag: p.key
+                        });
+                    }, diff);
+                }
+            });
+        }
+
+        /* ══ PWA INSTALL ══ */
+        let deferredPrompt = null;
+        window.addEventListener('beforeinstallprompt', e => {
+            e.preventDefault();
+            deferredPrompt = e;
+            document.getElementById('install-btn').style.display = 'inline-flex';
+        });
+        function installPWA() {
+            if (!deferredPrompt) return;
+            deferredPrompt.prompt();
+            deferredPrompt.userChoice.then(r => {
+                if (r.outcome === 'accepted') showToast(icon('i-check') + ' Приложение установлено');
+                deferredPrompt = null;
+                document.getElementById('install-btn').style.display = 'none';
+            });
+        }
+
+        /* ══ SERVICE WORKER ══ */
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('./sw.js').catch(() => { });
+        }
+
+        /* ══ INIT ══ */
+        (async function init() {
+            setDailyContent();
+
+            /* Push banner — engagement-based triggers instead of a blind timer.
+               The banner appears when the user signals interest: either they
+               dwell for 5+ s (not a bounce), change the theme, or open the
+               city search. Each trigger fires at most once per session. */
+            registerPushTriggers();
+
+            // Try saved location first
+            const savedLat = store.get('saved_lat');
+            const savedLon = store.get('saved_lon');
+            const savedCity = store.get('saved_city');
+            if (savedLat && savedLon && savedCity) {
+                await applyCoords(parseFloat(savedLat), parseFloat(savedLon), savedCity,
+                    document.getElementById('method-select').value);
+            } else {
+                // Try browser geolocation, fall back to IP
+                if ('geolocation' in navigator) {
+                    navigator.geolocation.getCurrentPosition(
+                        async pos => {
+                            const { latitude: lat, longitude: lon } = pos.coords;
+                            // Reverse geocode city name
+                            try {
+                                const r = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}&accept-language=ru`);
+                                const j = await r.json();
+                                const city = j.address?.city || j.address?.town || j.address?.village || j.address?.county || 'Ваш город';
+                                document.getElementById('loc-method').textContent = 'GPS';
+                                await applyCoords(lat, lon, city, document.getElementById('method-select').value);
+                                store.set('saved_lat', lat);
+                                store.set('saved_lon', lon);
+                                store.set('saved_city', city);
+                            } catch (e) {
+                                await applyCoords(lat, lon, 'Ваш город', document.getElementById('method-select').value);
+                            }
+                        },
+                        async () => { await geoByIP(); },
+                        { timeout: 6000 }
+                    );
+                } else {
+                    await geoByIP();
+                }
+            }
+        })();
+    </script>
+</body>
+
+</html>
